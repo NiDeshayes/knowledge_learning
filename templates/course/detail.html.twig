@@ -60,16 +60,20 @@
             border-bottom: none;
         }
 
-        .btn-add-to-cart {
+        .btn-add-to-cart,
+        .btn-back {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #343a40;
-            color: white;
+            border-radius: 5px;
             text-transform: uppercase;
             text-decoration: none;
-            border-radius: 5px;
             transition: background-color 0.3s;
             margin-top: 20px;
+        }
+
+        .btn-add-to-cart {
+            background-color: #343a40;
+            color: white;
         }
 
         .btn-add-to-cart:hover {
@@ -77,15 +81,8 @@
         }
 
         .btn-back {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 10px 20px;
             background-color: #ffc107;
             color: #343a40;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
         }
 
         .btn-back:hover {
@@ -93,8 +90,7 @@
         }
 
         .lesson-select {
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
 
         .lesson-select label {
@@ -112,9 +108,20 @@
             border-radius: 8px;
             margin-top: 20px;
         }
+
+        @media (max-width: 768px) {
+            .course-details {
+                padding: 15px;
+            }
+
+            .btn-add-to-cart,
+            .btn-back {
+                width: 100%;
+                text-align: center;
+                margin: 10px 0;
+            }
+        }
     </style>
-
-
 
     <div class="course-details">
         <img src="{{ asset('images/' ~ course.image) }}" alt="{{ course.title }}" class="course-image">
@@ -124,7 +131,6 @@
 
         <h2>Choisissez une option :</h2>
         
-        <!-- Formulaire pour choisir une leçon ou la formule complète -->
         <form action="{{ path('app_add_to_cart', { id: course.id }) }}" method="POST">
             <div class="lesson-select">
                 <label for="lesson-select">Sélectionnez une leçon :</label>
@@ -149,7 +155,6 @@
             <button type="submit" class="btn-add-to-cart">Ajouter au panier</button>
         </form>
 
-        <!-- Image de la leçon sélectionnée -->
         <img id="lesson-image" src="" alt="Image de la leçon" class="lesson-image" style="display:none;">
 
         <a href="{{ path('app_courses') }}" class="btn-back">Retour aux cursus</a>
@@ -163,11 +168,11 @@
 
             if (selectedOption.value) {
                 const imagePath = selectedOption.getAttribute('data-image');
-                lessonImage.src = '{{ asset('images/') }}' + imagePath;  // Chemin vers l'image
-                lessonImage.style.display = 'block'; // Affiche l'image
+                lessonImage.src = '{{ asset('images/') }}' + imagePath;
+                lessonImage.style.display = 'block';
             } else {
                 lessonImage.src = '';
-                lessonImage.style.display = 'none'; // Cache l'image si aucune leçon n'est sélectionnée
+                lessonImage.style.display = 'none';
             }
         }
     </script>

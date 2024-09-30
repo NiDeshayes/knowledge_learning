@@ -5,11 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Knowledge Learning{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    <style>
+        /* Styles personnalisés pour la nav et le footer */
+         /* Styles pour le logo */
+    .logo img {
+        border-radius: 10px; /* Arrondir les coins du logo */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajouter une ombre pour un effet de profondeur */
+        transition: transform 0.3s; /* Animation pour le survol */
+    }
+
+    .logo img:hover {
+        transform: scale(1.05); /* Zoomer légèrement lors du survol */
+    }
+        header {
+            background-color: #384050; /* Couleur de la barre de navigation */
+        }
+        
+        footer {
+            background-color: #384050; /* Couleur du pied de page */
+        }
+
+        .nav-link {
+            color: white; /* Couleur du texte des liens */
+        }
+
+        .nav-link:hover {
+            color: #ffc107; /* Couleur du texte des liens au survol */
+        }
+    </style>
 </head>
 <body>
-    <header class="bg-primary text-white">
+    <header class="text-white">
         <div class="container d-flex justify-content-between align-items-center py-3">
             <div class="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="" width="200" height="150">
@@ -17,18 +45,18 @@
             </div>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_home_index') }}">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('cart') }}">Panier</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_courses') }}">Cursus</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_lessons') }}">Leçons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_home_index') }}">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('cart') }}">Panier</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_courses') }}">Cursus</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_lessons') }}">Leçons</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_admin_index') }}">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_admin_index') }}">Admin</a></li>
                     {% endif %}
                     
                     {% if app.user %}
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a></li>
                     {% else %}
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_login') }}">Se connecter</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}">Se connecter</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -49,7 +77,7 @@
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="text-white text-center py-3">
         <div class="container">
             <p class="mb-0">&copy; 2024 Knowledge Learning. Tous droits réservés.</p>
         </div>

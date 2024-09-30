@@ -8,17 +8,22 @@
     <style>
         /* Styles pour la page des cursus */
         header {
-            text-align: center;
+            display: flex; /* Utiliser flexbox pour centrer le contenu */
+            flex-direction: column; /* Empiler verticalement */
+            align-items: center; /* Centrer horizontalement */
             margin-bottom: 40px;
         }
 
         h1 {
             font-size: 2.5rem;
             color: #343a40;
+            margin-top: 20px; /* Espace au-dessus du titre */
         }
 
         .search-form {
-            margin-top: 20px;
+            margin-bottom: 20px; /* Espace entre la barre de recherche et le titre */
+            display: flex; /* Flexbox pour aligner l'input et le bouton */
+            justify-content: center; /* Centrer la barre de recherche */
         }
 
         .search-form input {
@@ -26,6 +31,7 @@
             width: 250px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            margin-right: 10px; /* Espace entre l'input et le bouton */
         }
 
         .search-form button {
@@ -43,9 +49,10 @@
         }
 
         .course-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid; /* Utilisation de grid pour 3 colonnes */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; /* Espacement entre les cours */
+            padding: 0 20px; /* Ajout de padding pour éviter que les éléments touchent les bords */
         }
 
         .course-item {
@@ -53,9 +60,7 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 15px;
             padding: 20px;
-            width: 300px;
             text-align: center;
             transition: transform 0.2s;
         }
@@ -85,14 +90,43 @@
             font-weight: bold;
             color: #ffc107;
         }
+
+        /* Media Queries pour rendre la page responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .course-list {
+                grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur les écrans plus petits */
+            }
+
+            .course-item {
+                width: 90%; /* Remplir l'espace sur les écrans plus petits */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .search-form input {
+                width: 100%; /* Remplir l'espace sur les écrans très petits */
+            }
+
+            .course-list {
+                grid-template-columns: 1fr; /* 1 colonne sur les écrans très petits */
+            }
+        }
     </style>
 
     <header>
-        <h1>Cursus</h1>
         <form method="GET" action="{{ path('app_courses') }}" class="search-form">
             <input type="text" name="search" value="{{ searchTerm }}" placeholder="Rechercher...">
             <button type="submit">Rechercher</button>
         </form>
+        <h1>Cursus</h1>
     </header>
 
     <section class="course-list">

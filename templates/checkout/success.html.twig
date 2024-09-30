@@ -1,0 +1,14 @@
+{# templates/checkout/success.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment Successful{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Payment Successful</h1>
+        <p>Thank you for your purchase! Your payment was successful.</p>
+        <p>You will receive a confirmation email with your order details.</p>
+        <a href="{{ path('products') }}" class="btn btn-primary">Return to Products</a>
+    </div>
+{% endblock %}

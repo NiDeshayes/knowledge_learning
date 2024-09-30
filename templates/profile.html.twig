@@ -1,0 +1,15 @@
+{# templates/profile.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mon Profil</title>
+</head>
+<body>
+    <h1>Mon Profil</h1>
+    <p>Nom d'utilisateur: {{ app.user.username }}</p>
+    <p>Email: {{ app.user.email }}</p>
+    {# Ajoutez d'autres informations utilisateur ici #}
+
+    <a href="{{ path('app_logout') }}">Déconnexion</a>
+</body>
+</html>

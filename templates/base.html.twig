@@ -1,17 +1,61 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Knowledge Learning{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+</head>
+<body>
+    <header class="bg-primary text-white">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <div class="logo">
+                <img src="{{ asset('images/favicon.png') }}" alt="Knowledge Learning" width="50" height="50">
+                <span class="ml-2 h4">Knowledge Learning</span>
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_home_index') }}">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('cart') }}">Panier</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_courses') }}">Cursus</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_lessons') }}">Leçons</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_admin_index') }}">Admin</a></li>
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_login') }}">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+    <main class="container my-5">
         {% block body %}{% endblock %}
-    </body>
+    </main>
+
+    <section class="presentation bg-light p-4">
+        <div class="container">
+            <h2>Présentation de la société</h2>
+            <p>La société éditrice Knowledge est connue pour ses supports de formation vendus en librairie. 
+            Knowledge propose des formations sous forme de livres ou de kits dans les domaines de la musique, 
+            de l’informatique ou du jardinage, par exemple. Knowledge souhaite désormais développer sa gamme de produits 
+            en proposant en ligne ses formations sur un site e-learning. C’est le projet « Knowledge Learning ».</p>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 Knowledge Learning. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

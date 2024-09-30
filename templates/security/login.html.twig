@@ -1,0 +1,32 @@
+{# templates/security/login.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <h1>Connexion</h1>
+        <form action="{{ path('app_login') }}" method="post">
+            <div>
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" value="{{ last_username }}" required autofocus>
+            </div>
+
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            {# CSRF token field #}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit">Se connecter</button>
+
+            {% if error %}
+                <div class="error">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+        </form>
+
+        <p>Vous n'avez pas de compte ? <a href="{{ path('app_register') }}">Inscrivez-vous ici</a>.</p>
+    </main>
+{% endblock %}

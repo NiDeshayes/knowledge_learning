@@ -1,0 +1,25 @@
+{# templates/course/detail.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ course.title }}</h1>
+    <p><strong>Thème :</strong> {{ course.theme }}</p>
+    <p><strong>Prix :</strong> {{ course.price }} €</p>
+    <p>{{ course.description }}</p>
+
+    <h2>Leçons</h2>
+    <ul>
+        {% for lesson in course.lessons %}
+            <li>{{ lesson.title }} - {{ lesson.duration }} minutes</li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{ path('app_add_to_cart', { id: course.id }) }}" method="POST">
+        <button type="submit">Ajouter au panier</button>
+    </form>
+
+    <a href="{{ path('app_courses') }}">Retour aux cursus</a>
+{% endblock %}

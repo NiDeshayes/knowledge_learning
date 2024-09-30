@@ -1,0 +1,11 @@
+{# templates/bundles/TwigBundle/Exception/404.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+    <h1>Oups ! Cette page est introuvable.</h1>
+    <p>Désolé, mais la page que vous cherchez n'existe pas ou vous n'avez pas les permissions pour y accéder.</p>
+    <a href="{{ path('app_home_index') }}">Retour à l'accueil</a>
+{% endblock %}

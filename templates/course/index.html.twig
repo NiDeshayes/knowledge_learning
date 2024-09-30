@@ -1,0 +1,23 @@
+{# templates/course/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Cursus{% endblock %}
+
+{% block body %}
+    <h1>Cursus</h1>
+
+    <form method="GET" action="{{ path('app_courses') }}">
+        <input type="text" name="search" value="{{ searchTerm }}" placeholder="Rechercher...">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <ul>
+        {% for course in courses %}
+            <li>
+                <a href="{{ path('app_course_detail', { id: course.id }) }}">{{ course.title }}</a>
+                - {{ course.theme }} - {{ course.price }} €
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

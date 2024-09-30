@@ -1,0 +1,13 @@
+{# templates/checkout/cancel.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment Cancelled{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Payment Cancelled</h1>
+        <p>Your payment has been cancelled. If you have any questions, please contact our support team.</p>
+        <a href="{{ path('products') }}" class="btn btn-primary">Return to Products</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{# templates/public_home/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <h1>Bienvenue sur notre site</h1>
+        <p>Veuillez vous connecter pour accéder aux fonctionnalités complètes.</p>
+        <a href="{{ path('app_login') }}">Se connecter</a>
+
+        <h2>Produits mis en avant</h2>
+        <div class="product-list">
+            {% for product in featuredProducts %}
+                <div class="product">
+                    {% if product.imageName %}
+                        <img src="{{ asset('images/products/' ~ product.imageName) }}" alt="{{ product.name }}" class="product-image">
+                    {% endif %}
+                </div>
+            {% else %}
+                <p>Aucun produit mis en avant disponible.</p>
+            {% endfor %}
+
+             <div class="company-info">
+            <h2>Informations de la société</h2>
+            <p><strong>Nom de la société :</strong> Stubborn</p>
+            <p><strong>Adresse :</strong> Piccadilly Circus, London W1J 0DA, Royaume-Uni</p>
+            <p><strong>Adresse de contact :</strong> stubborn@blabla.com</p>
+        </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,20 @@
+{# templates/registration/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <h1>Inscription</h1>
+
+        {{ form_start(form) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.deliveryAddress) }}
+            {{ form_row(form.plainPassword.first) }}
+            {{ form_row(form.plainPassword.second) }}
+            <button type="submit">Créer un compte</button>
+        {{ form_end(form) }}
+
+        <p>Déjà inscrit ? <a href="{{ path('app_login') }}">Connectez-vous</a></p>
+    </main>
+{% endblock %}

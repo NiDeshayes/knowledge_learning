@@ -5,19 +5,107 @@
 {% block title %}Cursus{% endblock %}
 
 {% block body %}
-    <h1>Cursus</h1>
+    <style>
+        /* Styles pour la page des cursus */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    <form method="GET" action="{{ path('app_courses') }}">
-        <input type="text" name="search" value="{{ searchTerm }}" placeholder="Rechercher...">
-        <button type="submit">Rechercher</button>
-    </form>
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+        }
 
-    <ul>
+        .search-form {
+            margin-top: 20px;
+        }
+
+        .search-form input {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-form button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #343a40;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-form button:hover {
+            background-color: #495057;
+        }
+
+        .course-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .course-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .course-item:hover {
+            transform: scale(1.05);
+        }
+
+        .course-item img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .course-item h2 {
+            font-size: 1.5rem;
+            color: #343a40;
+        }
+
+        .course-theme {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .course-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffc107;
+        }
+    </style>
+
+    <header>
+        <h1>Cursus</h1>
+        <form method="GET" action="{{ path('app_courses') }}" class="search-form">
+            <input type="text" name="search" value="{{ searchTerm }}" placeholder="Rechercher...">
+            <button type="submit">Rechercher</button>
+        </form>
+    </header>
+
+    <section class="course-list">
         {% for course in courses %}
-            <li>
-                <a href="{{ path('app_course_detail', { id: course.id }) }}">{{ course.title }}</a>
-                - {{ course.theme }} - {{ course.price }} €
-            </li>
+            <div class="course-item">
+                <a href="{{ path('app_course_detail', { id: course.id }) }}">
+                    <img src="{{ asset('images/' ~ course.image) }}" alt="{{ course.title }}">
+                    <h2>{{ course.title }}</h2>
+                    <p class="course-theme">{{ course.theme }}</p>
+                    <p class="course-price">{{ course.price }} €</p>
+                </a>
+            </div>
         {% endfor %}
-    </ul>
+    </section>
+
 {% endblock %}

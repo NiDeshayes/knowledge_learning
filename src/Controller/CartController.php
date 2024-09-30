@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Lesson; // Assurez-vous d'importer la classe Lesson
+use App\Entity\Lesson;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,8 +46,24 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/add/{id}', name: 'app_add_to_cart')]
-    public function addToCart(int $id, SessionInterface $session): Response
+    #[Route('/cart/add/course/{id}', name: 'app_add_course_to_cart')]
+    public function addCourseToCart(int $id, SessionInterface $session): Response
+    {
+        // Récupérer le panier existant ou créer un tableau vide
+        $cart = $session->get('cart', []);
+        
+        // Ajoutez le cours avec une quantité de 1
+        $cart[$id] = 1;
+
+        // Mettez à jour le panier dans la session
+        $session->set('cart', $cart);
+
+        // Rediriger vers la page de panier
+        return $this->redirectToRoute('cart');
+    }
+
+    #[Route('/cart/add/lesson/{id}', name: 'app_add_lesson_to_cart')]
+    public function addLessonToCart(int $id, SessionInterface $session): Response
     {
         // Récupérer le panier existant ou créer un tableau vide
         $cart = $session->get('cart', []);

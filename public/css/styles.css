@@ -1,0 +1,88 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+header {
+    background-color: #343a40; /* Darker background */
+    padding: 15px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+/* Navigation styles */
+.nav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-item {
+    margin-left: 30px; /* Space between navigation items */
+}
+
+.nav-link {
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+    border-radius: 10px; /* Smooth rounded corners */
+}
+
+.nav-link:hover {
+    background-color: #ffc107; /* Background on hover */
+    color: #343a40; /* Dark text color on hover */
+    border-color: #ffc107; /* Border color on hover */
+}
+
+.nav-link.active {
+    background-color: #ffc107; /* Highlight for active link */
+    color: #343a40;
+    border-color: #ffc107;
+}
+
+.logout-btn {
+    background-color: #ffc107;
+    border: none;
+    color: #343a40;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+
+.logout-btn:hover {
+    background-color: #e0a800;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+}

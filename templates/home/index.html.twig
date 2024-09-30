@@ -1,20 +1,180 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Bienvenue sur notre boutique de formations{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    /* Global styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    
+    /* Hero section */
+    .hero {
+        background: url('/images/hero-background.jpg') no-repeat center center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+        padding: 100px 20px;
+        position: relative;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        font-weight: bold;
+        z-index: 1;
+        position: relative;
+    }
+
+    .hero p {
+        font-size: 24px;
+        margin-top: 10px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .hero .btn {
+        background-color: #ffc107;
+        color: #343a40;
+        padding: 15px 30px;
+        font-size: 18px;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-top: 20px;
+        border-radius: 5px;
+        transition: 0.3s ease;
+    }
+
+    .hero .btn:hover {
+        background-color: #e0a800;
+    }
+
+    /* Section styles */
+    .section {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .section h2 {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
+    .section-courses {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .course-card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 300px;
+        margin: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .course-card img {
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .course-card h3 {
+        font-size: 24px;
+        margin: 15px 0;
+    }
+
+    .course-card p {
+        padding: 0 15px;
+        font-size: 16px;
+    }
+
+    .course-card .btn {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #343a40;
+        color: #ffc107;
+        border-radius: 5px;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    .course-card .btn:hover {
+        background-color: #e0a800;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #343a40;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    footer a {
+        color: #ffc107;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #e0a800;
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/dnico/knowledge_learning/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/Users/dnico/knowledge_learning/templates/home/index.html.twig</code></li>
-    </ul>
+<div class="hero">
+    <div class="hero-overlay"></div>
+    <h1>Bienvenue sur notre boutique de formations</h1>
+    <p>Apprenez des compétences précieuses en cuisine, développement web, et jardinage</p>
+    <a href="#courses" class="btn">Explorez nos formations</a>
 </div>
+
+<section class="section" id="courses">
+    <h2>Nos formations</h2>
+    <div class="section-courses">
+        <!-- Course 1: Cuisine -->
+        <div class="course-card">
+            <img src="/images/cuisine.jpg" alt="Formation Cuisine">
+            <h3>Cuisine</h3>
+            <p>Apprenez les secrets des chefs pour cuisiner comme un pro.</p>
+            <a href="{{ path('app_course_detail', {id: 1}) }}" class="btn">En savoir plus</a>
+        </div>
+
+        <!-- Course 2: Développement Web -->
+        <div class="course-card">
+            <img src="/images/informatique.jpg" alt="Formation Développement Web">
+            <h3>Développement Web</h3>
+            <p>Maîtrisez les technologies modernes et devenez développeur web.</p>
+            <a href="{{ path('app_course_detail', {id: 2}) }}" class="btn">En savoir plus</a>
+        </div>
+
+        <!-- Course 3: Jardinage -->
+        <div class="course-card">
+            <img src="/images/jardinage.jpeg" alt="Formation Jardinage">
+            <h3>Jardinage</h3>
+            <p>Découvrez les astuces pour un jardin florissant toute l'année.</p>
+            <a href="{{ path('app_course_detail', {id: 3}) }}" class="btn">En savoir plus</a>
+        </div>
+    </div>
+</section>
+
+
 {% endblock %}

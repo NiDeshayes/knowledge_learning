@@ -1,32 +1,28 @@
-<?php
-
-// src/Service/CartService.php
+<?php 
 
 namespace App\Service;
 
+use App\Entity\Course;
+use App\Entity\Lesson;
+
 class CartService
 {
-    private $cart = [];
+    private array $cart = [];
 
-    public function addToCart($product, $quantity): void
+    public function addCourseToCart(Course $course): void
     {
-        $this->cart[$product->getId()] = [
-            'product' => $product,
-            'quantity' => $quantity
-        ];
+        $this->cart[$course->getId()] = ['type' => 'course', 'quantity' => 1];
     }
 
-    public function getCartItems(): array
+    public function addLessonToCart(Lesson $lesson): void
+    {
+        $this->cart[$lesson->getId()] = ['type' => 'lesson', 'quantity' => 1];
+    }
+
+    public function getCart(): array
     {
         return $this->cart;
     }
 
-    public function getCartTotal(): float
-    {
-        $total = 0;
-        foreach ($this->cart as $item) {
-            $total += $item['product']->getPrice() * $item['quantity'];
-        }
-        return $total;
-    }
+    // Ajoutez d'autres méthodes comme remove, etc., si nécessaire
 }

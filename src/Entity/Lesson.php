@@ -25,8 +25,14 @@ class Lesson
     #[ORM\Column(length: 255)]
     private ?string $videoUrl = null;
 
-    #[ORM\Column(type: Types::INTEGER)] // Ajout de la colonne pour la durée
-    private ?int $duration = null; // Durée en minutes
+    #[ORM\Column(type: Types::INTEGER)] // Durée en minutes
+    private ?int $duration = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)] // Champ pour le prix
+    private ?float $price = null; // Prix de la leçon
+
+    #[ORM\Column(length: 255, nullable: true)] // Champ pour l'image
+    private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
@@ -73,7 +79,6 @@ class Lesson
         return $this;
     }
 
-    // Ajout des accesseurs pour la durée
     public function getDuration(): ?int
     {
         return $this->duration;
@@ -82,6 +87,30 @@ class Lesson
     public function setDuration(int $duration): static
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getImage(): ?string // Méthode pour obtenir l'image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static // Méthode pour définir l'image
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -5,21 +5,170 @@
 {% block title %}{{ course.title }}{% endblock %}
 
 {% block body %}
-    <h1>{{ course.title }}</h1>
-    <p><strong>Thème :</strong> {{ course.theme }}</p>
-    <p><strong>Prix :</strong> {{ course.price }} €</p>
-    <p>{{ course.description }}</p>
+    <style>
+        /* Styles pour la page de détail du cursus */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    <h2>Leçons</h2>
-    <ul>
-        {% for lesson in course.lessons %}
-            <li>{{ lesson.title }} - {{ lesson.duration }} minutes</li>
-        {% endfor %}
-    </ul>
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+        }
 
-    <form action="{{ path('app_add_to_cart', { id: course.id }) }}" method="POST">
-        <button type="submit">Ajouter au panier</button>
-    </form>
+        .course-details {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    <a href="{{ path('app_courses') }}">Retour aux cursus</a>
+        .course-theme,
+        .course-price {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .course-description {
+            margin: 20px 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+            color: #343a40;
+        }
+
+        .lesson-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .lesson-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-add-to-cart {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #343a40;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #495057;
+        }
+
+        .btn-back {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffc107;
+            color: #343a40;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-back:hover {
+            background-color: #e0a800;
+        }
+
+        .lesson-select {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .lesson-select label {
+            font-weight: bold;
+        }
+
+        .course-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .lesson-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+
+
+
+    <div class="course-details">
+        <img src="{{ asset('images/' ~ course.image) }}" alt="{{ course.title }}" class="course-image">
+        <p class="course-theme"><strong>Thème :</strong> {{ course.theme }}</p>
+        <p class="course-price"><strong>Prix :</strong> {{ course.price }} €</p>
+        <p class="course-description">{{ course.description }}</p>
+
+        <h2>Choisissez une option :</h2>
+        
+        <!-- Formulaire pour choisir une leçon ou la formule complète -->
+        <form action="{{ path('app_add_to_cart', { id: course.id }) }}" method="POST">
+            <div class="lesson-select">
+                <label for="lesson-select">Sélectionnez une leçon :</label>
+                <select name="lesson_id" id="lesson-select" onchange="updateLessonImage()">
+                    <option value="">-- Choisissez une leçon --</option>
+                    {% for lesson in course.lessons %}
+                        <option value="{{ lesson.id }}" data-image="{{ lesson.image }}">{{ lesson.title }} - {{ lesson.duration }} minutes</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <input type="radio" id="full-package" name="package" value="full" checked>
+                <label for="full-package">Formule complète</label>
+            </div>
+
+            <div>
+                <input type="radio" id="single-lesson" name="package" value="single">
+                <label for="single-lesson">Leçon unique</label>
+            </div>
+
+            <button type="submit" class="btn-add-to-cart">Ajouter au panier</button>
+        </form>
+
+        <!-- Image de la leçon sélectionnée -->
+        <img id="lesson-image" src="" alt="Image de la leçon" class="lesson-image" style="display:none;">
+
+        <a href="{{ path('app_courses') }}" class="btn-back">Retour aux cursus</a>
+    </div>
+
+    <script>
+        function updateLessonImage() {
+            const select = document.getElementById('lesson-select');
+            const selectedOption = select.options[select.selectedIndex];
+            const lessonImage = document.getElementById('lesson-image');
+
+            if (selectedOption.value) {
+                const imagePath = selectedOption.getAttribute('data-image');
+                lessonImage.src = '{{ asset('images/') }}' + imagePath;  // Chemin vers l'image
+                lessonImage.style.display = 'block'; // Affiche l'image
+            } else {
+                lessonImage.src = '';
+                lessonImage.style.display = 'none'; // Cache l'image si aucune leçon n'est sélectionnée
+            }
+        }
+    </script>
 {% endblock %}

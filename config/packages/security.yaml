@@ -31,8 +31,9 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/products, roles: ROLE_USER }
+        - { path: ^/courses, roles: ROLE_USER }
         - { path: ^/home, roles: ROLE_USER }
         - { path: ^/cart, roles: ROLE_USER }
+        - { path: ^/lesson, roles: ROLE_USER }
         
         

@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Knowledge Learning{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
 </head>
 <body>
     <header class="bg-primary text-white">
         <div class="container d-flex justify-content-between align-items-center py-3">
             <div class="logo">
-                <img src="{{ asset('images/favicon.png') }}" alt="Knowledge Learning" width="50" height="50">
-                <span class="ml-2 h4">Knowledge Learning</span>
+                <img src="{{ asset('images/logo.png') }}" alt="" width="200" height="150">
+                <span class="ml-2 h4"></span>
             </div>
             <nav>
                 <ul class="nav">
@@ -24,7 +24,8 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_admin_index') }}">Admin</a></li>
                     {% endif %}
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    
+                    {% if app.user %}
                         <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_logout') }}">Se déconnecter</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link text-white" href="{{ path('app_login') }}">Se connecter</a></li>

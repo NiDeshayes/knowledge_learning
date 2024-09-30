@@ -28,6 +28,9 @@ class Course
     #[ORM\Column(length: 255)]
     private ?string $theme = null;
 
+    #[ORM\Column(length: 255, nullable: true)] // Champ pour l'image
+    private ?string $image = null;
+
     /**
      * @var Collection<int, Lesson>
      */
@@ -88,6 +91,18 @@ class Course
     public function setTheme(string $theme): static
     {
         $this->theme = $theme;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

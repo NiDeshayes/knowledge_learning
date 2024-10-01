@@ -1,7 +1,5 @@
 <?php 
 
-// src/Entity/Lesson.php
-
 namespace App\Entity;
 
 use App\Repository\LessonRepository;
@@ -33,6 +31,9 @@ class Lesson
 
     #[ORM\Column(length: 255, nullable: true)] // Champ pour l'image
     private ?string $image = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripePriceId = null; // Propriété pour l'ID du prix Stripe
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
@@ -111,6 +112,18 @@ class Lesson
     public function setImage(?string $image): static // Méthode pour définir l'image
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getStripePriceId(): ?string // Méthode pour obtenir l'ID du prix Stripe
+    {
+        return $this->stripePriceId;
+    }
+
+    public function setStripePriceId(?string $stripePriceId): static // Méthode pour définir l'ID du prix Stripe
+    {
+        $this->stripePriceId = $stripePriceId;
 
         return $this;
     }

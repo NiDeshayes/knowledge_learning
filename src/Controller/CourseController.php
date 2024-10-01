@@ -1,30 +1,43 @@
 <?php 
 
+// src/Controller/CourseController.php
+
 namespace App\Controller;
 
-use App\Entity\Course;
 use App\Repository\CourseRepository;
-use App\Service\CartService; // Assurez-vous d'importer votre service de panier
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\CartService;
+use App\Service\StripeService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface; // Ajoutez ceci
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CourseController extends AbstractController
 {
     private CourseRepository $courseRepository;
+    private StripeService $stripeService;
+    private CartService $cartService; // Ajout de CartService
 
-    public function __construct(CourseRepository $courseRepository)
+    public function __construct(CourseRepository $courseRepository, StripeService $stripeService, CartService $cartService)
     {
         $this->courseRepository = $courseRepository;
+        $this->stripeService = $stripeService;
+        $this->cartService = $cartService; // Injection de CartService
     }
 
-    #[Route('/courses', name: 'app_courses')]
+    #[Route('/courses', name: 'app_courses', methods: ['GET'])]
     public function index(Request $request): Response
     {
+        // Récupérer le terme de recherche depuis la requête
         $searchTerm = $request->query->get('search', '');
-        $courses = $this->courseRepository->findBySearchTerm($searchTerm);
+
+        // Si un terme de recherche est présent, filtrer les résultats
+        if ($searchTerm) {
+            $courses = $this->courseRepository->findBySearchTerm($searchTerm);
+        } else {
+            $courses = $this->courseRepository->findAll();
+        }
 
         return $this->render('course/index.html.twig', [
             'courses' => $courses,
@@ -32,7 +45,7 @@ class CourseController extends AbstractController
         ]);
     }
 
-    #[Route('/courses/{id}', name: 'app_course_detail')]
+    #[Route('/courses/{id}', name: 'app_course_detail', methods: ['GET'])]
     public function detail(int $id): Response
     {
         $course = $this->courseRepository->find($id);
@@ -47,36 +60,48 @@ class CourseController extends AbstractController
     }
 
     #[Route('/courses/{id}/add-to-cart', name: 'app_add_to_cart', methods: ['POST'])]
-    public function addToCart(Request $request, int $id, SessionInterface $session): Response // Passer la session ici
+    public function addToCart(Request $request, int $id): Response
     {
-        // Récupération du cursus
         $course = $this->courseRepository->find($id);
 
         if (!$course) {
             throw $this->createNotFoundException('Course not found');
         }
 
-        // Récupération des informations du formulaire
         $lessonId = $request->request->get('lesson_id');
         $packageType = $request->request->get('package');
 
-        $cartService = new CartService(); // Instancier ici le service
-
         if ($packageType === 'full') {
-            // Ajouter le cursus complet au panier
-            $cartService->addCourseToCart($course);
+            // Ajouter tout le cours au panier
+            $this->cartService->addCourseToCart($course);
         } elseif ($lessonId) {
-            // Ajouter la leçon spécifique au panier
+            // Ajouter une leçon spécifique
             $lesson = $course->getLessons()->filter(function ($lesson) use ($lessonId) {
                 return $lesson->getId() === $lessonId;
             })->first();
 
             if ($lesson) {
-                $cartService->addLessonToCart($lesson);
+                $this->cartService->addLessonToCart($lesson);
             }
         }
 
-        // Rediriger vers la page de détail ou de cours
         return $this->redirectToRoute('app_course_detail', ['id' => $id]);
+    }
+
+    #[Route('/checkout', name: 'app_checkout', methods: ['GET'])]
+    public function checkout(): Response
+    {
+        $cartItems = $this->cartService->getCartItems();
+        $lineItems = $this->stripeService->createLineItemsFromCart($cartItems);
+        
+        // Ajouter les URLs de succès et d'annulation
+        $successUrl = $this->generateUrl('app_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $cancelUrl = $this->generateUrl('app_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL);
+
+        // Créer la session de paiement
+        $session = $this->stripeService->createCheckoutSession($lineItems, $successUrl, $cancelUrl);
+
+        // Rediriger vers Stripe
+        return $this->redirect($session->url);
     }
 }

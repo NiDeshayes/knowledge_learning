@@ -28,8 +28,11 @@ class Course
     #[ORM\Column(length: 255)]
     private ?string $theme = null;
 
-    #[ORM\Column(length: 255, nullable: true)] // Champ pour l'image
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeProductId = null; // Propriété pour l'ID du produit Stripe
 
     /**
      * @var Collection<int, Lesson>
@@ -103,6 +106,18 @@ class Course
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getStripeProductId(): ?string // Méthode pour obtenir l'ID du produit Stripe
+    {
+        return $this->stripeProductId;
+    }
+
+    public function setStripeProductId(?string $stripeProductId): static // Méthode pour définir l'ID du produit Stripe
+    {
+        $this->stripeProductId = $stripeProductId;
 
         return $this;
     }

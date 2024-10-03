@@ -33,24 +33,18 @@ class LessonsController extends AbstractController
 
         if ($this->isGranted('ROLE_Guitare')) {
             return $this->render('lessons/Guitare.html.twig', [
-                'lessons' => $lessons,
+                'lessons' => $lessons, // Vous pouvez filtrer les leçons si nécessaire
             ]);
         }
 
         if ($this->isGranted('ROLE_PIANO')) {
             return $this->render('lessons/Piano.html.twig', [
-                'lessons' => $lessons,
-            ]);
-        }
-
-        if ($this->isGranted('ROLE_Css')) {
-            return $this->render('lessons/Css.html.twig', [
-                'lessons' => $lessons,
+                'lessons' => $lessons, // Idem pour ce rôle
             ]);
         }
 
         if ($this->isGranted('ROLE_Http')) {
-            return $this->render('lessons/Http.html.twig', [
+            return $this->render('lessons/Htttp.html.twig', [
                 'lessons' => $lessons,
             ]);
         }
@@ -74,21 +68,69 @@ class LessonsController extends AbstractController
     #[Route('/lessons/lesson1', name: 'app_lesson1')]
     public function lesson1(): Response
     {
-        // Logique pour afficher la leçon 1
         return $this->render('lessons/Découverte_de_linstrument.html.twig');
     }
 
     #[Route('/lessons/lesson2', name: 'app_lesson2')]
     public function lesson2(): Response
     {
-        // Logique pour afficher la leçon 2
         return $this->render('lessons/Cursus_de_guitare.html.twig');
     }
 
-    
-   
+    #[Route('/lessons/lesson3', name: 'app_lesson3')]
+    public function lesson3(): Response
+    {
+        return $this->render('lessons/Accords_Piano.html.twig');
+    }
 
+    #[Route('/lessons/lesson4', name: 'app_lesson4')]
+    public function lesson4(): Response
+    {
+        return $this->render('lessons/Cursus_Piano.html.twig');
+    }
 
-    
+    #[Route('/lessons/lesson5', name: 'app_lesson5')]
+    public function lesson5(): Response
+    {
+        return $this->render('lessons/Http.html.twig');
+    }
 
+    #[Route('/lessons/lesson6', name: 'app_lesson6')]
+    public function lesson6(): Response
+    {
+        return $this->render('lessons/Css.html.twig');
+    }
+    #[Route('/lessons/lesson7', name: 'app_lesson7')]
+    public function lesson7(): Response
+    {
+        return $this->render('lessons/Jardinage_outil.html.twig');
+    }
+
+    #[Route('/lessons/lesson8', name: 'app_lesson8')]
+    public function lesson8(): Response
+    {
+        return $this->render('lessons/Jardinage_lune.html.twig');
+    }
+    #[Route('/lessons/lesson9', name: 'app_lesson9')]
+    public function lesson9(): Response
+    {
+        return $this->render('lessons/Cuisson.html.twig');
+    }
+
+    #[Route('/lessons/lesson10', name: 'app_lesson10')]
+    public function lesson10(): Response
+    {
+        return $this->render('lessons/Cuisine_saveur.html.twig');
+    }
+    #[Route('/lessons/lesson11', name: 'app_lesson11')]
+    public function lesson11(): Response
+    {
+        return $this->render('lessons/Style_assiete.html.twig');
+    }
+
+    #[Route('/lessons/lesson12', name: 'app_lesson12')]
+    public function lesson12(): Response
+    {
+        return $this->render('lessons/Harmoniser.html.twig');
+    }
 }

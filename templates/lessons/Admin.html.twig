@@ -1,44 +1,200 @@
-{# templates/lessons/admin.html.twig #}
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Leçons{% endblock %}
+{% block title %}ADMIN{% endblock %}
 
 {% block body %}
-    <h1>Liste des Leçons</h1>
-    
-    {# Formulaire de filtrage #}
-    <form method="get" action="{{ path('app_lessons') }}">
-        <label for="course">Sélectionnez un cours:</label>
-        <select name="course_id" id="course" onchange="this.form.submit()">
-            <option value="">Tous les cours</option>
-            {% for course in courses %}
-                <option value="{{ course.id }}" {% if course.id == selectedCourseId %}selected{% endif %}>
-                    {{ course.title }}
-                </option>
-            {% endfor %}
-        </select>
-    </form>
+    <div class="container">
+        <h1 id="cursus-title">Bienvenue dans la partie ADMIN</h1>
+        <h2>Sélectionnez une leçon :</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Titre de la leçon</th>
-                <th>Fichier</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for lesson in lessons %}
-                <tr>
-                    <td>
-                        <a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">{{ lesson.title }}</a>
-                    </td>
-                    <td>
-                        {# Remplacez cela par la logique appropriée pour déterminer le fichier associé à la leçon #}
-                        {{ lesson.title }}.html.twig
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <div class="formation">
+            <h3>Leçon 1 :Guitare/Introduction aux Accords de Base</h3>
+            <p>Cette leçon vous apprendra les accords de base nécessaires pour jouer vos premières chansons.</p>
+            <button class="access-btn" onclick="accessLesson('lesson1')">Accéder à la leçon</button>
+            <div id="square-formation1" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 2 :Guitare/Accords et gammes</h3>
+            <p>Apprenez les différents accords et gammes.</p>
+            <button class="access-btn" onclick="accessLesson('lesson2')">Accéder à la leçon</button>
+            <div id="square-formation2" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 3 :Piano/Introduction aux Accords de Base</h3>
+            <p>Cette leçon vous apprendra les accords de base nécessaires pour jouer vos premières chansons.</p>
+            <button class="access-btn" onclick="accessLesson('lesson3')">Accéder à la leçon</button>
+            <div id="square-formation1" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 4 :Piano/Accords et gammes</h3>
+            <p>Apprenez les différents accords et gammes.</p>
+            <button class="access-btn" onclick="accessLesson('lesson4')">Accéder à la leçon</button>
+            <div id="square-formation2" class="valid-square" style="display:none;"></div>
+        </div>
+
+
+<div class="formation">
+            <h3>Leçon 5 :Les langages Html et CSS</h3>
+            <p>Creer son premier Site et le dynamiser</p>
+            <button class="access-btn" onclick="accessLesson('lesson5')">Accéder à la leçon</button>
+            <div id="square-formation1" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 6 :: Dynamiser votre site avec Javascript</h3>
+            <p>Vos premières interactions .</p>
+            <button class="access-btn" onclick="accessLesson('lesson6')">Accéder à la leçon</button>
+            <div id="square-formation2" class="valid-square" style="display:none;"></div>
+        </div>
+
+<div class="formation">
+            <h3>Leçon 7 : :Les outils du jardinier</h3>
+            <p>Tous les differents outils neccessaire pour etre un bon jardinier </p>
+            <button class="access-btn" onclick="accessLesson('lesson7')">Accéder à la leçon</button>
+            <div id="square-formation1" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 8 :Jardiner avec la lune </h3>
+            <p>Technique de Jardinage</p>
+            <button class="access-btn" onclick="accessLesson('lesson8')">Accéder à la leçon</button>
+            <div id="square-formation2" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 9 : Les modes de cuisson</h3>
+            <p>Tous les differents Thermostats</p>
+            <button class="access-btn" onclick="accessLesson('lesson9')">Accéder à la leçon</button>
+            <div id="square-formation1" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 10 :Les saveurs</h3>
+            <p>Les Gout mis ensembles</p>
+            <button class="access-btn" onclick="accessLesson('lesson10')">Accéder à la leçon</button>
+            <div id="square-formation2" class="valid-square" style="display:none;"></div>
+        </div>
+
+         <div class="formation">
+            <h3>Leçon 11 : :Mettre en œuvre le style dans l’assiette</h3>
+            <p>Apprendre ou placer tel aliment pour donner un style à son assiète</p>
+            <button class="access-btn" onclick="accessLesson('lesson11')">Accéder à la leçon</button>
+            <div id="square-formation1" class="valid-square" style="display:none;"></div>
+        </div>
+
+        <div class="formation">
+            <h3>Leçon 12 : Harmoniser un repas à quatre plats</h3>
+            <p>Rendez Harmonieux un repas avec plusieurs plats</p>
+            <button class="access-btn" onclick="accessLesson('lesson12')">Accéder à la leçon</button>
+            <div id="square-formation2" class="valid-square" style="display:none;"></div>
+        </div>
+
+        
+    </div>
+
+    <script>
+        
+       
+        function accessLesson(lesson) {
+            if (lesson === 'lesson1') {
+                window.location.href = '/lessons/lesson1'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson2') {
+                window.location.href = '/lessons/lesson2'; // Remplacez par l'URL directe de la leçon 2
+            }
+            if (lesson === 'lesson3') {
+                window.location.href = '/lessons/lesson3'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson4') {
+                window.location.href = '/lessons/lesson4'; // Remplacez par l'URL directe de la leçon 2
+            }
+            if (lesson === 'lesson5') {
+                window.location.href = '/lessons/lesson5'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson6') {
+                window.location.href = '/lessons/lesson6'; // Remplacez par l'URL directe de la leçon 2
+            }
+            if (lesson === 'lesson7') {
+                window.location.href = '/lessons/lesson7'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson8') {
+                window.location.href = '/lessons/lesson8'; // Remplacez par l'URL directe de la leçon 2
+            }
+            if (lesson === 'lesson9') {
+                window.location.href = '/lessons/lesson9'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson10') {
+                window.location.href = '/lessons/lesson10'; // Remplacez par l'URL directe de la leçon 2
+            }
+            if (lesson === 'lesson11') {
+                window.location.href = '/lessons/lesson11'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson12') {
+                window.location.href = '/lessons/lesson12'; // Remplacez par l'URL directe de la leçon 2
+            }
+            
+        }
+    </script>
+
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        .formation {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s;
+        }
+
+        .formation:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .validate-btn, .access-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .validate-btn:hover, .access-btn:hover {
+            background-color: #45a049;
+        }
+
+        .valid-square {
+            width: 20px; 
+            height: 20px; 
+            background-color: green; 
+            margin-left: 10px; 
+            display: inline-block; 
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.21em;
+            color: #777;
+        }
+    </style>
+
+    <footer>
+        <p>&copy; 2024 Section Administrateur du site Knowledge_Learning</p>
+    </footer>
 {% endblock %}

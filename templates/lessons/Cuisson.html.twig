@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon de Cuisine - Modes de Cuisson{% endblock %}
+
+{% block body %}
+    <h1>Leçon de Cuisine : Modes de Cuisson</h1>
+
+    <h2>Introduction aux Modes de Cuisson</h2>
+    <p>Les modes de cuisson sont essentiels pour réussir vos plats. Chaque méthode apporte des saveurs et des textures uniques. Dans cette leçon, nous allons explorer les principales techniques de cuisson utilisées en cuisine.</p>
+
+    <h2>Les Modes de Cuisson Principaux</h2>
+    <ul>
+        <li><strong>Ébullition</strong> : Faire cuire les aliments dans de l'eau bouillante. Idéal pour les pâtes, les légumes et les œufs.</li>
+        <li><strong>Vapeur</strong> : Cuire les aliments en les exposant à la vapeur d'eau. Préserve les nutriments et la couleur des légumes.</li>
+        <li><strong>Rôtissage</strong> : Cuisson à haute température au four, souvent pour des viandes ou des légumes, créant une croûte dorée.</li>
+        <li><strong>Sauté</strong> : Faire cuire rapidement des aliments dans une petite quantité d'huile à feu vif. Idéal pour les légumes et les viandes en petits morceaux.</li>
+        <li><strong>Braisière</strong> : Cuisson lente à feu doux dans un liquide, souvent utilisée pour des morceaux de viande plus durs, leur permettant de devenir tendres.</li>
+        <li><strong>Grillage</strong> : Cuire les aliments directement sur une source de chaleur. Excellent pour les viandes, les poissons et les légumes grillés.</li>
+    </ul>
+
+    <h2>Exemple de Recette : Légumes Sautés</h2>
+    <h3>Ingrédients :</h3>
+    <ul>
+        <li>1 courgette, coupée en dés</li>
+        <li>1 poivron, coupé en lanières</li>
+        <li>1 carotte, coupée en rondelles</li>
+        <li>2 cuillères à soupe d'huile d'olive</li>
+        <li>Sel et poivre au goût</li>
+        <li>Herbes fraîches (basilic ou persil) pour garnir</li>
+    </ul>
+
+    <h3>Instructions :</h3>
+    <ol>
+        <li>Chauffez l'huile d'olive dans une grande poêle à feu moyen-vif.</li>
+        <li>Ajoutez les légumes préparés et faites-les sauter pendant environ 5 à 7 minutes, jusqu'à ce qu'ils soient tendres mais encore croquants.</li>
+        <li>Assaisonnez avec du sel et du poivre.</li>
+        <li>Servez chaud, garni d'herbes fraîches.</li>
+    </ol>
+
+    <h2>Regardez cette vidéo pour apprendre à sauter des légumes :</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YourVideoIDHere" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="qcm">
+        <h2>QCM - Questions à Choix Multiples</h2>
+        <form id="qcmForm">
+            <label>1. Quelle méthode de cuisson préserve le mieux les nutriments des légumes ?
+                <select name="question1">
+                    <option value="A">Ébullition</option>
+                    <option value="B">Vapeur</option>
+                    <option value="C">Rôtissage</option>
+                    <option value="D">Grillage</option>
+                </select>
+            </label>
+
+            <label>2. Quelle méthode de cuisson utilise une petite quantité d'huile à feu vif ?
+                <select name="question2">
+                    <option value="A">Ébullition</option>
+                    <option value="B">Sauté</option>
+                    <option value="C">Braisage</option>
+                    <option value="D">Vapeur</option>
+                </select>
+            </label>
+
+            <label>3. Quel type de cuisson est idéal pour des morceaux de viande durs ?
+                <select name="question3">
+                    <option value="A">Grillage</option>
+                    <option value="B">Rôtissage</option>
+                    <option value="C">Braisage</option>
+                    <option value="D">Sauté</option>
+                </select>
+            </label>
+
+            <label>4. Quelle méthode de cuisson donne une texture croustillante aux aliments ?
+                <select name="question4">
+                    <option value="A">Ébullition</option>
+                    <option value="B">Sauté</option>
+                    <option value="C">Braisage</option>
+                    <option value="D">Vapeur</option>
+                </select>
+            </label>
+
+            <label>5. Quel est l'avantage de cuire des aliments à la vapeur ?
+                <select name="question5">
+                    <option value="A">Ils deviennent plus salés</option>
+                    <option value="B">Ils conservent leur couleur et leurs nutriments</option>
+                    <option value="C">Ils cuisent plus vite</option>
+                    <option value="D">Ils perdent leur goût</option>
+                </select>
+            </label>
+
+            <label>6. Quelle est la méthode utilisée pour cuire un aliment sur une source de chaleur directe ?
+                <select name="question6">
+                    <option value="A">Ébullition</option>
+                    <option value="B">Grillage</option>
+                    <option value="C">Sauté</option>
+                    <option value="D">Braisage</option>
+                </select>
+            </label>
+
+            <label>7. Quel type de cuisson est généralement utilisé pour les pâtes ?
+                <select name="question7">
+                    <option value="A">Sauté</option>
+                    <option value="B">Ébullition</option>
+                    <option value="C">Vapeur</option>
+                    <option value="D">Braisage</option>
+                </select>
+            </label>
+
+            <label>8. Quel mode de cuisson implique de cuire à feu doux dans un liquide ?
+                <select name="question8">
+                    <option value="A">Sauté</option>
+                    <option value="B">Braisage</option>
+                    <option value="C">Grillage</option>
+                    <option value="D">Rôtissage</option>
+                </select>
+            </label>
+
+            <label>9. Quelle est la meilleure méthode pour cuire des légumes sans ajouter de matières grasses ?
+                <select name="question9">
+                    <option value="A">Ébullition</option>
+                    <option value="B">Rôtissage</option>
+                    <option value="C">Sauté</option>
+                    <option value="D">Grillage</option>
+                </select>
+            </label>
+
+            <label>10. Quelle méthode de cuisson est souvent utilisée pour les plats au four ?
+                <select name="question10">
+                    <option value="A">Vapeur</option>
+                    <option value="B">Ébullition</option>
+                    <option value="C">Rôtissage</option>
+                    <option value="D">Sauté</option>
+                </select>
+            </label>
+
+            <button type="submit">Soumettre</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Leçon de Cuisine</p>
+    </footer>
+
+    <script>
+        document.getElementById('qcmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                question1: 'B',
+                question2: 'B',
+                question3: 'C',
+                question4: 'B',
+                question5: 'B',
+                question6: 'B',
+                question7: 'B',
+                question8: 'B',
+                question9: 'A',
+                question10: 'C'
+            };
+
+            let score = 0;
+            const userAnswers = new FormData(this);
+
+            for (let [question, answer] of userAnswers.entries()) {
+                if (answers[question] === answer) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            if (score === 10) {
+                resultDiv.textContent = 'Bravo ! Vous avez obtenu un score parfait de 10/10 !';
+                resultDiv.classList.remove('error');
+            } else {
+                resultDiv.textContent = `Vous avez obtenu ${score}/10. Essayez encore !`;
+                resultDiv.classList.add('error');
+            }
+        });
+    </script>
+{% endblock %}

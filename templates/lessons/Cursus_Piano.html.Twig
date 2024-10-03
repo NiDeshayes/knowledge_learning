@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon de Piano - Accords et Gammes de Piano{% endblock %}
+
+{% block body %}
+    <h1>Leçon de Piano : Accords et Gammes de Piano</h1>
+
+    <h2>Introduction aux Accords et Gammes</h2>
+    <p>La maîtrise des accords et des gammes est essentielle pour tout pianiste. Dans cette leçon, nous allons explorer les accords fondamentaux et les gammes majeures et mineures qui vous aideront à progresser dans votre jeu.</p>
+
+    <h2>Les Accords Majeurs et Mineurs</h2>
+    <p>Les accords majeurs et mineurs sont les bases de nombreuses chansons. Voici quelques accords clés :</p>
+    
+    <h3>Accords Majeurs :</h3>
+    <ul>
+        <li><strong>Do (C)</strong> : Accord joyeux, parfait pour commencer.</li>
+        <li><strong>Ré (D)</strong> : Accord fréquent dans divers styles musicaux.</li>
+        <li><strong>Sol (G)</strong> : Accord riche et plein, idéal pour le folk et le rock.</li>
+    </ul>
+
+    <h3>Accords Mineurs :</h3>
+    <ul>
+        <li><strong>La mineur (Am)</strong> : Accord avec une sonorité mélancolique.</li>
+        <li><strong>Ré mineur (Dm)</strong> : Utilisé pour créer des ambiances émotionnelles.</li>
+        <li><strong>Mi mineur (Em)</strong> : Très accessible pour les débutants.</li>
+    </ul>
+
+    <h2>Les Gammes Majeures</h2>
+    <p>La gamme majeure est composée de sept notes. Elle est souvent utilisée dans la composition musicale. Voici un exemple de la gamme de Do majeur :</p>
+    <ul>
+        <li>Notes : Do, Ré, Mi, Fa, Sol, La, Si</li>
+    </ul>
+
+    <h2>Les Gammes Mineures</h2>
+    <p>La gamme mineure a un son plus sombre et est souvent utilisée dans des styles variés. Exemple de la gamme de La mineur :</p>
+    <ul>
+        <li>Notes : La, Si, Do, Ré, Mi, Fa, Sol</li>
+    </ul>
+
+    <h2>Exercice Pratique : Jouez les Accords et les Gammes</h2>
+    <p>Essayez de jouer les accords majeurs et mineurs, puis les gammes associées. Cela vous aidera à renforcer votre technique.</p>
+
+    <h2>Regardez cette vidéo pour approfondir votre connaissance des accords et des gammes :</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_link_here" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allowfullscreen"></iframe>
+
+    <div class="qcm">
+        <h2>QCM - Questions à Choix Multiples</h2>
+        <form id="qcmForm">
+            <label>1. Quel est l'accord majeur de base ? 
+                <select name="question1">
+                    <option value="A">Do (C)</option>
+                    <option value="B">La mineur (Am)</option>
+                    <option value="C">Ré mineur (Dm)</option>
+                    <option value="D">Si (B)</option>
+                </select>
+            </label>
+
+            <label>2. Quelle est la première note de la gamme de Do majeur ? 
+                <select name="question2">
+                    <option value="A">Ré</option>
+                    <option value="B">Mi</option>
+                    <option value="C">Do</option>
+                    <option value="D">Fa</option>
+                </select>
+            </label>
+
+            <label>3. Quel est l'accord mineur de base ? 
+                <select name="question3">
+                    <option value="A">Do (C)</option>
+                    <option value="B">La mineur (Am)</option>
+                    <option value="C">Ré majeur (D)</option>
+                    <option value="D">Fa (F)</option>
+                </select>
+            </label>
+
+            <label>4. Quelle note suit le Do dans la gamme majeure ? 
+                <select name="question4">
+                    <option value="A">Ré</option>
+                    <option value="B">La</option>
+                    <option value="C">Mi</option>
+                    <option value="D">Sol</option>
+                </select>
+            </label>
+
+            <label>5. Quel est le ton de la gamme de La mineur ? 
+                <select name="question5">
+                    <option value="A">Majeur</option>
+                    <option value="B">Mineur</option>
+                    <option value="C">Augmenté</option>
+                    <option value="D">Diminué</option>
+                </select>
+            </label>
+
+            <button type="submit">Soumettre</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;"></div>
+
+        <!-- Bouton de validation de la formation -->
+        <button id="validateTraining" style="margin-top: 20px;">Valider la formation</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Leçon de Piano</p>
+    </footer>
+
+    <script>
+        document.getElementById('qcmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                question1: 'A', // Do (C)
+                question2: 'C', // Do
+                question3: 'B', // La mineur (Am)
+                question4: 'A', // Ré
+                question5: 'B', // Mineur
+            };
+
+            let score = 0;
+            const userAnswers = new FormData(this);
+
+            for (let [question, answer] of userAnswers.entries()) {
+                if (answers[question] === answer) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            if (score === 5) {
+                resultDiv.textContent = 'Bravo ! Vous avez obtenu un score parfait de 5/5 !';
+                resultDiv.classList.remove('error');
+            } else {
+                resultDiv.textContent = `Vous avez obtenu ${score}/5. Essayez encore !`;
+                resultDiv.classList.add('error');
+            }
+        });
+
+        document.getElementById('validateTraining').addEventListener('click', function() {
+            alert('Formation validée !');
+            // Ajoutez ici la logique pour enregistrer la validation, par exemple en envoyant une requête AJAX.
+            window.location.href = '{{ path('app_lessons') }}'; // Changez cela pour la route désirée
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon de Cuisine - Mettre en Œuvre le Style dans l’Assiette{% endblock %}
+
+{% block body %}
+    <h1>Leçon de Cuisine : Mettre en Œuvre le Style dans l’Assiette</h1>
+
+    <h2>Introduction à la Présentation des Plats</h2>
+    <p>La présentation des plats est tout aussi importante que le goût. Un plat bien présenté stimule l'appétit et donne une première impression positive. Dans cette leçon, nous allons explorer différentes techniques pour styliser vos assiettes.</p>
+
+    <h2>Techniques de Présentation</h2>
+    <ul>
+        <li><strong>Utilisation des Couleurs</strong> : Choisissez des ingrédients colorés pour créer un plat attrayant. Par exemple, associez des légumes verts avec des protéines dorées.</li>
+        <li><strong>Disposition</strong> : Pensez à la façon dont les aliments sont disposés dans l’assiette. Évitez de tout empiler au centre et jouez avec les formes.</li>
+        <li><strong>Éléments Décoratifs</strong> : Ajoutez des herbes fraîches, des fleurs comestibles ou des sauces pour apporter de la couleur et du contraste.</li>
+        <li><strong>Hauteur</strong> : Jouez avec la hauteur en superposant les ingrédients ou en utilisant des emporte-pièces pour créer des couches.</li>
+        <li><strong>Choix de la Vaisselle</strong> : Utilisez des assiettes de différentes tailles et formes pour mettre en valeur vos plats. Les assiettes blanches sont idéales pour faire ressortir les couleurs des aliments.</li>
+    </ul>
+
+    <h2>Exemple de Recette : Salade Colorée Stylisée</h2>
+    <h3>Ingrédients :</h3>
+    <ul>
+        <li>1 tasse de roquette</li>
+        <li>1/2 tasse de tomates cerises, coupées en deux</li>
+        <li>1/2 concombre, tranché</li>
+        <li>1/4 tasse de feta émiettée</li>
+        <li>Olive et vinaigre balsamique pour la vinaigrette</li>
+        <li>Herbes fraîches (basilic ou menthe) pour la garniture</li>
+    </ul>
+
+    <h3>Instructions :</h3>
+    <ol>
+        <li>Dans un grand saladier, combinez la roquette, les tomates cerises, le concombre et la feta.</li>
+        <li>Préparez une vinaigrette simple avec de l'huile d'olive et du vinaigre balsamique, puis arrosez-la sur la salade.</li>
+        <li>Pour la présentation, disposez la salade en utilisant un emporte-pièce au centre de l'assiette.</li>
+        <li>Ajoutez des herbes fraîches sur le dessus et quelques olives autour pour décorer.</li>
+        <li>Servez immédiatement pour une fraîcheur optimale.</li>
+    </ol>
+
+    <h2>Regardez cette vidéo pour des astuces de présentation :</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YourVideoIDHere" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="qcm">
+        <h2>QCM - Questions à Choix Multiples</h2>
+        <form id="qcmForm">
+            <label>1. Quelle est l'importance de la présentation des plats ?
+                <select name="question1">
+                    <option value="A">Elle n'est pas importante</option>
+                    <option value="B">Elle stimule l'appétit</option>
+                    <option value="C">Elle est uniquement pour les restaurants</option>
+                    <option value="D">Elle doit être compliquée</option>
+                </select>
+            </label>
+
+            <label>2. Quel élément peut être utilisé pour ajouter de la couleur à un plat ?
+                <select name="question2">
+                    <option value="A">Des ingrédients colorés</option>
+                    <option value="B">Un plat blanc</option>
+                    <option value="C">Des ustensiles de cuisine</option>
+                    <option value="D">Une nappe unie</option>
+                </select>
+            </label>
+
+            <label>3. Quelle technique aide à créer de la hauteur dans un plat ?
+                <select name="question3">
+                    <option value="A">Disposer les aliments à plat</option>
+                    <option value="B">Utiliser des emporte-pièces</option>
+                    <option value="C">Cuire les aliments en les superposant</option>
+                    <option value="D">Utiliser des assiettes profondes</option>
+                </select>
+            </label>
+
+            <label>4. Quelle est l'importance du choix de la vaisselle ?
+                <select name="question4">
+                    <option value="A">Aucune importance</option>
+                    <option value="B">Elle doit toujours être en plastique</option>
+                    <option value="C">Elle peut améliorer la présentation</option>
+                    <option value="D">Elle doit être très colorée</option>
+                </select>
+            </label>
+
+            <label>5. Quel type d'éléments décoratifs peut être ajouté à un plat ?
+                <select name="question5">
+                    <option value="A">Des herbes fraîches</option>
+                    <option value="B">Des épices en poudre</option>
+                    <option value="C">Des ustensiles de cuisine</option>
+                    <option value="D">Des serviettes en papier</option>
+                </select>
+            </label>
+
+            <label>6. Quelle méthode de présentation aide à créer un aspect sophistiqué ?
+                <select name="question6">
+                    <option value="A">Tout empiler au centre</option>
+                    <option value="B">Utiliser des sauces en zigzag</option>
+                    <option value="C">Ignorer la couleur</option>
+                    <option value="D">Utiliser des plats en papier</option>
+                </select>
+            </label>
+
+            <label>7. Quel type d'herbes est souvent utilisé pour la garniture ?
+                <select name="question7">
+                    <option value="A">Herbes sèches</option>
+                    <option value="B">Herbes fraîches</option>
+                    <option value="C">Herbes congelées</option>
+                    <option value="D">Herbes amères</option>
+                </select>
+            </label>
+
+            <label>8. Quel aspect est crucial pour la présentation ?
+                <select name="question8">
+                    <option value="A">La chaleur des aliments</option>
+                    <option value="B">L'ordre des ingrédients</option>
+                    <option value="C">La propreté et l'agencement</option>
+                    <option value="D">Le poids du plat</option>
+                </select>
+            </label>
+
+            <label>9. Quelle couleur de vaisselle fait ressortir les aliments ?
+                <select name="question9">
+                    <option value="A">Vermillon</option>
+                    <option value="B">Blanc</option>
+                    <option value="C">Noir</option>
+                    <option value="D">Vert</option>
+                </select>
+            </label>
+
+            <label>10. Que peut-on utiliser pour créer des motifs sur l'assiette ?
+                <select name="question10">
+                    <option value="A">Des serviettes</option>
+                    <option value="B">Des sauces</option>
+                    <option value="C">Des couverts</option>
+                    <option value="D">Des torchons</option>
+                </select>
+            </label>
+
+            <button type="submit">Soumettre</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Leçon de Cuisine</p>
+    </footer>
+
+    <script>
+        document.getElementById('qcmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                question1: 'B',
+                question2: 'A',
+                question3: 'B',
+                question4: 'C',
+                question5: 'A',
+                question6: 'B',
+                question7: 'B',
+                question8: 'C',
+                question9: 'B',
+                question10: 'B'
+            };
+
+            let score = 0;
+            const userAnswers = new FormData(this);
+
+            for (let [question, answer] of userAnswers.entries()) {
+                if (answers[question] === answer) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            if (score === 10) {
+                resultDiv.textContent = 'Bravo ! Vous avez obtenu un score parfait de 10/10.';
+            } else {
+                resultDiv.textContent = `Vous avez obtenu ${score} sur 10.`;
+            }
+        });
+    </script>
+{% endblock %}

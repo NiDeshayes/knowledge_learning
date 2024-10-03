@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cursus Piano - Sélectionnez votre Leçon{% endblock %}
+{% block title %}Cursus Informatique - Sélectionnez votre Leçon{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1 id="cursus-title">Bienvenue dans le Cursus de Piano</h1>
+        <h1 id="cursus-title">Bienvenue dans le Cursus Informatique</h1>
         <h2>Sélectionnez une leçon :</h2>
 
         <div class="formation">
-            <h3>Leçon 1 : Découverte de l’instrument</h3>
-            <p>Cette leçon vous familiarisera avec les différentes parties du piano et les techniques de base pour commencer à jouer.</p>
-            <button class="validate-btn" onclick="validateLesson('Leçon 3')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson3')">Accéder à la leçon</button>
+            <h3>Leçon 1 : Introduction à HTML</h3>
+            <p>Cette leçon vous apprendra les bases de HTML pour créer des pages web.</p>
+            <button class="validate-btn" onclick="validateLesson('Leçon 5')">Valider cette leçon</button>
+            <button class="access-btn" onclick="accessLesson('lesson5')">Accéder à la leçon</button>
             <div id="square-formation1" class="valid-square" style="display:none;"></div>
         </div>
 
         <div class="formation">
-            <h3>Leçon 2 : Les accords et les gammes</h3>
-            <p>Apprenez les différents accords et gammes pour enrichir votre jeu au piano.</p>
-            <button class="validate-btn" onclick="validateLesson('Leçon 4')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson4')">Accéder à la leçon</button>
+            <h3>Leçon 2 : Introduction à CSS</h3>
+            <p>Apprenez à styliser vos pages web avec CSS.</p>
+            <button class="validate-btn" onclick="validateLesson('Leçon 6')">Valider cette leçon</button>
+            <button class="access-btn" onclick="accessLesson('lesson6')">Accéder à la leçon</button>
             <div id="square-formation2" class="valid-square" style="display:none;"></div>
         </div>
 
@@ -28,7 +28,7 @@
         </div>
 
         <div id="final-message" style="display:none; margin-top: 20px; color: green;">
-            <h3>Félicitations ! Vous avez validé le cursus Piano.</h3>
+            <h3>Félicitations ! Vous avez validé le cursus Informatique.</h3>
         </div>
     </div>
 
@@ -43,10 +43,10 @@
             confirmationDiv.style.display = 'block';
 
             // Afficher le carré vert correspondant
-            if (lessonName === 'Leçon 1') {
+            if (lessonName === 'Leçon 5') {
                 lesson1Validée = true;
                 document.getElementById('square-formation1').style.display = 'inline-block';
-            } else if (lessonName === 'Leçon 2') {
+            } else if (lessonName === 'Leçon 6') {
                 lesson2Validée = true;
                 document.getElementById('square-formation2').style.display = 'inline-block';
             }
@@ -59,10 +59,10 @@
         }
 
         function accessLesson(lesson) {
-            if (lesson === 'lesson3') {
-                window.location.href = '/lessons/lesson3'; // Remplacez par l'URL directe de la leçon 3
-            } else if (lesson === 'lesson4') {
-                window.location.href = '/lessons/lesson4'; // Remplacez par l'URL directe de la leçon 4
+            if (lesson === 'lesson5') {
+                window.location.href = '/lessons/lesson5'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson6') {
+                window.location.href = '/lessons/lesson6'; // Remplacez par l'URL directe de la leçon 2
             }
         }
     </script>
@@ -129,6 +129,6 @@
     </style>
 
     <footer>
-        <p>&copy; 2024 Cursus de Piano</p>
+        <p>&copy; 2024 Cursus Informatique</p>
     </footer>
 {% endblock %}

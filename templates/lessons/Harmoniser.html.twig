@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon de Cuisine - Harmoniser un Repas à Quatre Plats{% endblock %}
+
+{% block body %}
+    <h1>Leçon de Cuisine : Harmoniser un Repas à Quatre Plats</h1>
+
+    <h2>Introduction à l'Harmonisation des Repas</h2>
+    <p>Harmoniser un repas à quatre plats demande une réflexion minutieuse sur les saveurs, les textures et les couleurs. Chaque plat doit se compléter tout en apportant une expérience culinaire mémorable. Dans cette leçon, nous allons explorer les principes d'harmonisation et vous proposer un exemple de menu complet.</p>
+
+    <h2>Principes d'Harmonisation</h2>
+    <ul>
+        <li><strong>Équilibre des Saveurs</strong> : Assurez-vous que les plats offrent un équilibre entre le sucré, le salé, l'acide et l'amer.</li>
+        <li><strong>Textures Variées</strong> : Variez les textures pour créer une expérience intéressante. Alternez entre des plats croquants, crémeux, légers et riches.</li>
+        <li><strong>Couleurs et Présentation</strong> : Pensez à la présentation visuelle. Utilisez des ingrédients colorés pour rendre chaque plat attrayant.</li>
+        <li><strong>Températures</strong> : Jouez avec les températures en servant des plats chauds et froids pour un contraste agréable.</li>
+        <li><strong>Accords Mets et Vins</strong> : Pensez aux vins qui accompagneront chaque plat pour compléter l'ensemble du repas.</li>
+    </ul>
+
+    <h2>Exemple de Menu à Quatre Plats</h2>
+    <h3>1. Entrée : Salade de Chèvre Chaud</h3>
+    <ul>
+        <li>Ingrédients : fromage de chèvre, salade verte, noix, vinaigrette balsamique.</li>
+        <li>Saveurs : Un mélange de salé et d'acide, avec la douceur des noix.</li>
+    </ul>
+
+    <h3>2. Plat Principal : Filet de Saumon aux Agrumes</h3>
+    <ul>
+        <li>Ingrédients : filet de saumon, agrumes (orange, citron), herbes fraîches.</li>
+        <li>Textures : La tendreté du saumon contre le croquant des zestes d'agrumes.</li>
+    </ul>
+
+    <h3>3. Plat de Fromage : Assiette de Fromages Affinés</h3>
+    <ul>
+        <li>Ingrédients : variétés de fromages (camembert, roquefort, comté), pain artisanal.</li>
+        <li>Couleurs : Une palette de couleurs allant du blanc au bleu au jaune.</li>
+    </ul>
+
+    <h3>4. Dessert : Tarte au Citron Meringuée</h3>
+    <ul>
+        <li>Ingrédients : pâte sablée, crème au citron, meringue légère.</li>
+        <li>Température : Servir froid pour un contraste rafraîchissant après le repas.</li>
+    </ul>
+
+    <h2>Accords Mets et Vins</h2>
+    <ul>
+        <li><strong>Entrée</strong> : Un vin blanc sec comme un Sauvignon Blanc.</li>
+        <li><strong>Plat Principal</strong> : Un vin blanc aromatique, comme un Chardonnay.</li>
+        <li><strong>Fromages</strong> : Un vin rouge léger, tel qu'un Pinot Noir.</li>
+        <li><strong>Dessert</strong> : Un vin doux, comme un Sauternes ou un Muscat.</li>
+    </ul>
+
+    <h2>Regardez cette vidéo pour des conseils d'harmonisation :</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YourVideoIDHere" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="qcm">
+        <h2>QCM - Questions à Choix Multiples</h2>
+        <form id="qcmForm">
+            <label>1. Quel est l'un des principes d'harmonisation des repas ?
+                <select name="question1">
+                    <option value="A">Équilibre des saveurs</option>
+                    <option value="B">Utilisation de produits congelés</option>
+                    <option value="C">Ne pas varier les textures</option>
+                    <option value="D">Ne pas penser aux couleurs</option>
+                </select>
+            </label>
+
+            <label>2. Quel type de plat peut apporter de la texture croquante ?
+                <select name="question2">
+                    <option value="A">Soupe</option>
+                    <option value="B">Salade</option>
+                    <option value="C">Riz</option>
+                    <option value="D">Purée</option>
+                </select>
+            </label>
+
+            <label>3. Quel vin accompagnerait le mieux le plat principal de saumon ?
+                <select name="question3">
+                    <option value="A">Un vin rouge corsé</option>
+                    <option value="B">Un vin blanc sec</option>
+                    <option value="C">Un vin rosé</option>
+                    <option value="D">Un vin pétillant</option>
+                </select>
+            </label>
+
+            <label>4. Quel est le rôle des agrumes dans le plat principal ?
+                <select name="question4">
+                    <option value="A">Apporter de la douceur</option>
+                    <option value="B">Apporter de l'acidité</option>
+                    <option value="C">Apporter de la chaleur</option>
+                    <option value="D">Apporter de l'amertume</option>
+                </select>
+            </label>
+
+            <label>5. Quelle texture a la meringue dans le dessert ?
+                <select name="question5">
+                    <option value="A">Lisse et crémeuse</option>
+                    <option value="B">Croquante et légère</option>
+                    <option value="C">Dense et riche</option>
+                    <option value="D">Granuleuse</option>
+                </select>
+            </label>
+
+            <label>6. Pourquoi est-il important de penser à la présentation ?
+                <select name="question6">
+                    <option value="A">Cela n'a pas d'importance</option>
+                    <option value="B">C'est la seule chose qui compte</option>
+                    <option value="C">Cela stimule l'appétit et donne une première impression positive</option>
+                    <option value="D">C'est juste pour les restaurants</option>
+                </select>
+            </label>
+
+            <label>7. Quel type de fromage peut être inclus dans une assiette de fromages ?
+                <select name="question7">
+                    <option value="A">Fromages à pâte molle</option>
+                    <option value="B">Fromages à pâte dure</option>
+                    <option value="C">Fromages bleus</option>
+                    <option value="D">Toutes les réponses précédentes</option>
+                </select>
+            </label>
+
+            <label>8. Quel est un bon accompagnement pour une tarte au citron ?
+                <select name="question8">
+                    <option value="A">Vin rouge corsé</option>
+                    <option value="B">Vin doux</option>
+                    <option value="C">Bière</option>
+                    <option value="D">Cidre</option>
+                </select>
+            </label>
+
+            <label>9. Quelle couleur de fromage peut apporter un contraste intéressant ?
+                <select name="question9">
+                    <option value="A">Blanc</option>
+                    <option value="B">Jaune</option>
+                    <option value="C">Bleu</option>
+                    <option value="D">Toutes les réponses précédentes</option>
+                </select>
+            </label>
+
+            <label>10. Quelle texture a une salade bien préparée ?
+                <select name="question10">
+                    <option value="A">Lisse</option>
+                    <option value="B">Croquante</option>
+                    <option value="C">Dense</option>
+                    <option value="D">Grasse</option>
+                </select>
+            </label>
+
+            <button type="submit">Soumettre</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Leçon de Cuisine</p>
+    </footer>
+
+    <script>
+        document.getElementById('qcmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                question1: 'A',
+                question2: 'B',
+                question3: 'B',
+                question4: 'B',
+                question5: 'B',
+                question6: 'C',
+                question7: 'D',
+                question8: 'B',
+                question9: 'D',
+                question10: 'B',
+            };
+
+            let score = 0;
+            const formData = new FormData(event.target);
+            formData.forEach((value, key) => {
+                if (value === answers[key]) {
+                    score++;
+                }
+            });
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            if (score === 10) {
+                resultDiv.textContent = 'Excellent ! Vous avez obtenu un score parfait de 10 sur 10.';
+            } else if (score >= 7) {
+                resultDiv.textContent = `Bon travail ! Vous avez obtenu ${score} sur 10.`;
+            } else {
+                resultDiv.textContent = `Vous avez obtenu ${score} sur 10.`;
+            }
+        });
+    </script>
+{% endblock %}

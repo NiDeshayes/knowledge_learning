@@ -1,181 +1,176 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Leçon de Cuisine - Introduction à la Cuisine Italienne{% endblock %}
+{% block title %}Cursus Cuisine - Sélectionnez votre Leçon{% endblock %}
 
 {% block body %}
-    <h1>Leçon de Cuisine : Introduction à la Cuisine Italienne</h1>
+    <div class="container">
+        <h1 id="cursus-title">Bienvenue dans le Cursus de Cuisine</h1>
+        <h2>Sélectionnez une leçon :</h2>
 
-    <h2>Introduction à la Cuisine Italienne</h2>
-    <p>La cuisine italienne est connue pour sa simplicité et la qualité de ses ingrédients. Dans cette leçon, nous allons explorer quelques plats classiques et les techniques de base qui vous permettront de réaliser des recettes italiennes délicieuses.</p>
+        <div class="cursus">
+            <h3>Cursus d’initiation à la cuisine</h3>
+            <div class="formation">
+                <h4>Leçon n°1 : Les modes de cuisson</h4>
+                <p>Cette leçon vous apprendra les différentes méthodes de cuisson pour sublimer vos plats.</p>
+                <button class="validate-btn" onclick="validateLesson('Leçon 9', 'cuisine')">Valider cette leçon</button>
+                <button class="access-btn" onclick="accessLesson('lesson9')">Accéder à la leçon</button>
+                <div id="square-formation1" class="valid-square" style="display:none;"></div>
+            </div>
 
-    <h2>Ingrédients de Base</h2>
-    <ul>
-        <li><strong>Pâtes</strong> : Un aliment de base dans de nombreux plats italiens. Les pâtes fraîches ou sèches peuvent être utilisées selon la recette.</li>
-        <li><strong>Tomates</strong> : Utilisées fraîches ou en sauce, elles sont essentielles dans de nombreux plats.</li>
-        <li><strong>Basilic</strong> : Une herbe aromatique qui apporte une saveur unique aux plats.</li>
-        <li><strong>Huile d'Olive</strong> : Essentielle pour la cuisson et l'assaisonnement.</li>
-    </ul>
+            <div class="formation">
+                <h4>Leçon n°2 : Les saveurs</h4>
+                <p>Apprenez à équilibrer les saveurs dans vos plats pour un meilleur goût.</p>
+                <button class="validate-btn" onclick="validateLesson('Leçon 10', 'cuisine')">Valider cette leçon</button>
+                <button class="access-btn" onclick="accessLesson('lesson10')">Accéder à la leçon</button>
+                <div id="square-formation2" class="valid-square" style="display:none;"></div>
+            </div>
+        </div>
 
-    <h2>Recette Classique : Spaghetti à la Carbonara</h2>
-    <h3>Ingrédients :</h3>
-    <ul>
-        <li>400 g de spaghetti</li>
-        <li>150 g de guanciale ou de pancetta</li>
-        <li>4 jaunes d'œufs</li>
-        <li>100 g de fromage pecorino râpé</li>
-        <li>Sel et poivre noir au goût</li>
-    </ul>
+        <div class="cursus">
+            <h3>Cursus d’initiation à l’art du dressage culinaire</h3>
+            <div class="formation">
+                <h4>Leçon n°1 : Mettre en œuvre le style dans l’assiette</h4>
+                <p>Découvrez comment présenter vos plats avec élégance.</p>
+                <button class="validate-btn" onclick="validateLesson('Leçon 11', 'dressage')">Valider cette leçon</button>
+                <button class="access-btn" onclick="accessLesson('lesson11')">Accéder à la leçon</button>
+                <div id="square-formation3" class="valid-square" style="display:none;"></div>
+            </div>
 
-    <h3>Instructions :</h3>
-    <ol>
-        <li>Faites cuire les spaghetti dans une grande casserole d'eau salée jusqu'à ce qu'ils soient al dente.</li>
-        <li>Dans une poêle, faites revenir le guanciale ou la pancetta jusqu'à ce qu'il soit croustillant.</li>
-        <li>Dans un bol, mélangez les jaunes d'œufs et le fromage pecorino râpé. Ajoutez du poivre noir au goût.</li>
-        <li>Une fois les pâtes cuites, égouttez-les et ajoutez-les à la poêle avec le guanciale. Retirez du feu.</li>
-        <li>Incorporez rapidement le mélange d'œufs et de fromage aux pâtes pour obtenir une sauce crémeuse.</li>
-        <li>Servez immédiatement avec du fromage supplémentaire et du poivre noir.</li>
-    </ol>
+            <div class="formation">
+                <h4>Leçon n°2 : Harmoniser un repas à quatre plats</h4>
+                <p>Apprenez à créer un menu harmonieux pour un repas complet.</p>
+                <button class="validate-btn" onclick="validateLesson('Leçon 12', 'dressage')">Valider cette leçon</button>
+                <button class="access-btn" onclick="accessLesson('lesson12')">Accéder à la leçon</button>
+                <div id="square-formation4" class="valid-square" style="display:none;"></div>
+            </div>
+        </div>
 
-    <h2>Regardez cette vidéo pour apprendre à préparer des spaghetti à la carbonara :</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/hGu2hmir-ic?si=c_qKDaPgmkIxV6Ei" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div id="confirmation" style="display:none; margin-top: 20px;">
+            <h4 id="confirmation-message"></h4>
+        </div>
 
-    <div class="qcm">
-        <h2>QCM - Questions à Choix Multiples</h2>
-        <form id="qcmForm">
-            <label>1. Quel est l'ingrédient principal des spaghetti à la carbonara ?
-                <select name="question1">
-                    <option value="A">Tomates</option>
-                    <option value="B">Guanciale</option>
-                    <option value="C">Basilic</option>
-                    <option value="D">Oignons</option>
-                </select>
-            </label>
-
-            <label>2. Quels jaunes d'œufs sont utilisés dans la recette ?
-                <select name="question2">
-                    <option value="A">Entiers</option>
-                    <option value="B">Seuls les blancs</option>
-                    <option value="C">Seuls les jaunes</option>
-                    <option value="D">Pas d'œufs</option>
-                </select>
-            </label>
-
-            <label>3. Quel fromage est traditionnellement utilisé dans ce plat ?
-                <select name="question3">
-                    <option value="A">Parmesan</option>
-                    <option value="B">Mozzarella</option>
-                    <option value="C">Pecorino</option>
-                    <option value="D">Gorgonzola</option>
-                </select>
-            </label>
-
-            <label>4. Quelle est la texture souhaitée des spaghetti lors de la cuisson ?
-                <select name="question4">
-                    <option value="A">Mou</option>
-                    <option value="B">Al dente</option>
-                    <option value="C">Dur</option>
-                    <option value="D">Trop cuit</option>
-                </select>
-            </label>
-
-            <label>5. Quelle herbe aromatique est souvent ajoutée aux plats italiens ?
-                <select name="question5">
-                    <option value="A">Persil</option>
-                    <option value="B">Ciboulette</option>
-                    <option value="C">Basilic</option>
-                    <option value="D">Thym</option>
-                </select>
-            </label>
-
-            <label>6. Quel type d'huile est recommandé pour la cuisine italienne ?
-                <select name="question6">
-                    <option value="A">Huile de colza</option>
-                    <option value="B">Huile d'olive</option>
-                    <option value="C">Huile de tournesol</option>
-                    <option value="D">Huile de noix</option>
-                </select>
-            </label>
-
-            <label>7. Quel type de viande est traditionnellement utilisé dans la carbonara ?
-                <select name="question7">
-                    <option value="A">Boeuf</option>
-                    <option value="B">Poulet</option>
-                    <option value="C">Guanciale</option>
-                    <option value="D">Poisson</option>
-                </select>
-            </label>
-
-            <label>8. Quelle méthode est utilisée pour épaissir la sauce dans les spaghetti à la carbonara ?
-                <select name="question8">
-                    <option value="A">Ajout de farine</option>
-                    <option value="B">Incorporation de crème</option>
-                    <option value="C">Mélange d'œufs et de fromage</option>
-                    <option value="D">Réduction de la sauce</option>
-                </select>
-            </label>
-
-            <label>9. Quels autres plats italiens sont populaires ?
-                <select name="question9">
-                    <option value="A">Sushi et Tacos</option>
-                    <option value="B">Pizza et Lasagne</option>
-                    <option value="C">Burgers et Frites</option>
-                    <option value="D">Sushis et Dim Sum</option>
-                </select>
-            </label>
-
-            <label>10. Que signifie "al dente" ?
-                <select name="question10">
-                    <option value="A">Trop cuit</option>
-                    <option value="B">Bien cuit</option>
-                    <option value="C">Cuit à point</option>
-                    <option value="D">Pas cuit</option>
-                </select>
-            </label>
-
-            <button type="submit">Soumettre</button>
-        </form>
-        <div id="result" class="result" style="display: none;"></div>
+        <div id="final-message" style="display:none; margin-top: 20px; color: green;">
+            <h3>Félicitations ! Vous avez validé le cursus Cuisine.</h3>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Leçon de Cuisine</p>
-    </footer>
-
     <script>
-        document.getElementById('qcmForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        let lesson1CuisineValidée = false;
+        let lesson2CuisineValidée = false;
+        let lesson1DressageValidée = false;
+        let lesson2DressageValidée = false;
 
-            const answers = {
-                question1: 'B',
-                question2: 'C',
-                question3: 'C',
-                question4: 'B',
-                question5: 'C',
-                question6: 'B',
-                question7: 'C',
-                question8: 'C',
-                question9: 'B',
-                question10: 'C'
-            };
+        function validateLesson(lessonName, cursus) {
+            const confirmationDiv = document.getElementById('confirmation');
+            const message = document.getElementById('confirmation-message');
+            message.textContent = `Vous avez validé la ${lessonName}.`;
+            confirmationDiv.style.display = 'block';
 
-            let score = 0;
-            const userAnswers = new FormData(this);
-
-            for (let [question, answer] of userAnswers.entries()) {
-                if (answers[question] === answer) {
-                    score++;
+            // Afficher le carré vert correspondant
+            if (cursus === 'cuisine') {
+                if (lessonName === 'Leçon 9') {
+                    lesson1CuisineValidée = true;
+                    document.getElementById('square-formation1').style.display = 'inline-block';
+                } else if (lessonName === 'Leçon 10') {
+                    lesson2CuisineValidée = true;
+                    document.getElementById('square-formation2').style.display = 'inline-block';
+                }
+            } else if (cursus === 'dressage') {
+                if (lessonName === 'Leçon 11') {
+                    lesson1DressageValidée = true;
+                    document.getElementById('square-formation3').style.display = 'inline-block';
+                } else if (lessonName === 'Leçon 12') {
+                    lesson2DressageValidée = true;
+                    document.getElementById('square-formation4').style.display = 'inline-block';
                 }
             }
 
-            const resultDiv = document.getElementById('result');
-            resultDiv.style.display = 'block';
-            if (score === 10) {
-                resultDiv.textContent = 'Bravo ! Vous avez obtenu un score parfait de 10/10 !';
-                resultDiv.classList.remove('error');
-            } else {
-                resultDiv.textContent = `Vous avez obtenu ${score}/10. Essayez encore !`;
-                resultDiv.classList.add('error');
+            // Vérifiez si toutes les leçons sont validées
+            if ((lesson1CuisineValidée && lesson2CuisineValidée) || (lesson1DressageValidée && lesson2DressageValidée)) {
+                document.getElementById('final-message').style.display = 'block';
+                document.getElementById('cursus-title').style.color = 'green';
             }
-        });
+        }
+
+        function accessLesson(lesson) {
+            if (lesson === 'lesson9') {
+                window.location.href = '/lessons/lesson9'; // Remplacez par l'URL directe de la leçon 1
+            } else if (lesson === 'lesson10') {
+                window.location.href = '/lessons/lesson10'; // Remplacez par l'URL directe de la leçon 2
+            } else if (lesson === 'lesson11') {
+                window.location.href = '/lessons/lesson11'; // Remplacez par l'URL directe de la leçon 3
+            } else if (lesson === 'lesson12') {
+                window.location.href = '/lessons/lesson12'; // Remplacez par l'URL directe de la leçon 4
+            }
+        }
     </script>
+
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        .cursus {
+            margin-bottom: 30px;
+        }
+
+        .formation {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s;
+        }
+
+        .formation:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .validate-btn, .access-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .validate-btn:hover, .access-btn:hover {
+            background-color: #45a049;
+        }
+
+        .valid-square {
+            width: 20px; 
+            height: 20px; 
+            background-color: green; 
+            margin-left: 10px; 
+            display: inline-block; 
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+
+    <footer>
+        <p>&copy; 2024 Cursus de Cuisine</p>
+    </footer>
 {% endblock %}

@@ -1,0 +1,44 @@
+{# templates/lessons/admin.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Leçons{% endblock %}
+
+{% block body %}
+    <h1>Liste des Leçons</h1>
+    
+    {# Formulaire de filtrage #}
+    <form method="get" action="{{ path('app_lessons') }}">
+        <label for="course">Sélectionnez un cours:</label>
+        <select name="course_id" id="course" onchange="this.form.submit()">
+            <option value="">Tous les cours</option>
+            {% for course in courses %}
+                <option value="{{ course.id }}" {% if course.id == selectedCourseId %}selected{% endif %}>
+                    {{ course.title }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Titre de la leçon</th>
+                <th>Fichier</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lesson in lessons %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">{{ lesson.title }}</a>
+                    </td>
+                    <td>
+                        {# Remplacez cela par la logique appropriée pour déterminer le fichier associé à la leçon #}
+                        {{ lesson.title }}.html.twig
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

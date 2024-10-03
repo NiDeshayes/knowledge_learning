@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon de Guitare - Introduction aux Accords de Base{% endblock %}
+
+{% block body %}
+    <h1>Leçon de Guitare : Introduction aux Accords de Base</h1>
+
+    <h2>Introduction aux Accords de Base</h2>
+    <p>La guitare est un instrument polyvalent qui permet de jouer une grande variété de styles musicaux. Dans cette leçon, nous allons explorer les accords de base, qui sont essentiels pour jouer de nombreuses chansons.</p>
+
+    <h2>Qu'est-ce qu'un Accord ?</h2>
+    <p>Un accord est un ensemble de notes jouées ensemble. Les accords sont construits à partir de notes fondamentales et de leurs harmoniques. Les accords majeurs et mineurs sont les plus couramment utilisés.</p>
+
+    <h2>Les Accords Majeurs :</h2>
+    <ul>
+        <li><strong>Do (C)</strong> : Accord joyeux, souvent utilisé dans les chansons pop.</li>
+        <li><strong>Ré (D)</strong> : Accord majeur très fréquent dans la musique.</li>
+        <li><strong>Mi (E)</strong> : Accord avec un son plein, souvent utilisé dans le rock.</li>
+    </ul>
+
+    <h2>Les Accords Mineurs :</h2>
+    <ul>
+        <li><strong>La mineur (Am)</strong> : Accord avec une sonorité triste.</li>
+        <li><strong>Ré mineur (Dm)</strong> : Utilisé pour créer une atmosphère émotionnelle.</li>
+        <li><strong>Mi mineur (Em)</strong> : Simple à jouer, excellent pour les débutants.</li>
+    </ul>
+
+    <h2>Regardez cette vidéo pour apprendre à jouer les accords de base :</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6f3N3-fLwAA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allowfullscreen"></iframe>
+
+    <div class="qcm">
+        <h2>QCM - Questions à Choix Multiples</h2>
+        <form id="qcmForm">
+            <!-- Questions du QCM -->
+            <label>1. Quel est l'accord majeur mentionné dans la leçon ?
+                <select name="question1">
+                    <option value="A">Do (C)</option>
+                    <option value="B">La mineur (Am)</option>
+                    <option value="C">Ré mineur (Dm)</option>
+                    <option value="D">Fa (F)</option>
+                </select>
+            </label>
+
+            <label>2. Quelle caractéristique a l'accord La mineur ?
+                <select name="question2">
+                    <option value="A">Joyeux</option>
+                    <option value="B">Triste</option>
+                    <option value="C">Énergique</option>
+                    <option value="D">Calme</option>
+                </select>
+            </label>
+
+            <!-- Ajoutez ici les autres questions... -->
+
+            <button type="submit">Soumettre</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;"></div>
+        
+        <!-- Bouton de validation de la formation -->
+        <button id="validateTraining" style="margin-top: 20px;">Valider la formation</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Leçon de Guitare</p>
+    </footer>
+
+    <script>
+        document.getElementById('qcmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                question1: 'A',
+                question2: 'B',
+                // Ajoutez les réponses pour les autres questions...
+            };
+
+            let score = 0;
+            const userAnswers = new FormData(this);
+
+            for (let [question, answer] of userAnswers.entries()) {
+                if (answers[question] === answer) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            if (score === 10) {
+                resultDiv.textContent = 'Bravo ! Vous avez obtenu un score parfait de 10/10 !';
+                resultDiv.classList.remove('error');
+            } else {
+                resultDiv.textContent = `Vous avez obtenu ${score}/10. Essayez encore !`;
+                resultDiv.classList.add('error');
+            }
+        });
+
+        document.getElementById('validateTraining').addEventListener('click', function() {
+            // Logic to validate training
+            alert('Formation validée !');
+
+            // Example: Redirect to another page after validation
+            window.location.href = '{{ path('app_lessons') }}'; // Change this to the desired route
+        });
+    </script>
+{% endblock %}

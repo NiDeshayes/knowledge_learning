@@ -30,10 +30,7 @@ security:
                 always_remember_me: true
 
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/courses, roles: ROLE_USER }
-        - { path: ^/home, roles: ROLE_USER }
-        - { path: ^/cart, roles: ROLE_USER }
-        - { path: ^/lesson, roles: ROLE_USER }
-        
-        
+        - { path: ^/admin, roles: ROLE_ADMIN } # accès réservé aux administrateurs
+        - { path: ^/courses, roles: ROLE_USER } # accès aux utilisateurs connectés
+        - { path: ^/home, roles: ROLE_USER } # accès aux utilisateurs connectés
+        - { path: ^/cart, roles: ROLE_USER } # accès aux utilisateurs connectés

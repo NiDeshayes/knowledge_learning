@@ -4,121 +4,42 @@
 
 {% block body %}
 <style>
-    /* Global styles */
-    body {
-        font-family: 'Arial', sans-serif;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Header */
-    header {
-        background-color: #343a40;
-        color: white;
-        padding: 20px 0;
-        text-align: center;
-    }
-
-    header h1 {
-        margin: 0;
-    }
-
-    /* Cart section */
+    /* Styles globaux et autres styles ici... */
     .cart-section {
-        padding: 60px 20px;
-        text-align: center;
+        padding: 20px;
     }
-
     .cart-title {
-        font-size: 36px;
-        margin-bottom: 30px;
+        font-size: 1.5em;
+        margin-bottom: 20px;
     }
-
-    .cart-items {
-        margin-bottom: 40px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
     .cart-item {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 15px;
-        border-bottom: 1px solid #ddd;
+        margin-bottom: 15px;
     }
-
-    .cart-item:last-child {
-        border-bottom: none;
-    }
-
     .cart-item img {
-        width: 100px;
-        border-radius: 8px;
+        width: 100px; /* Ajustez la largeur selon vos besoins */
+        height: auto;
+        margin-right: 20px;
     }
-
-    .cart-item h3 {
-        margin: 0;
-        font-size: 18px;
-    }
-
-    .cart-item p {
-        margin: 0;
-        font-size: 16px;
-        color: #666;
-    }
-
-    .cart-item .price {
-        font-size: 18px;
+    .price {
         font-weight: bold;
-        color: #ffc107;
     }
-
-    .quantity-input {
-        width: 50px;
-        text-align: center;
-        margin: 0 10px;
-    }
-
     .total {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 20px 0;
+        font-size: 1.2em;
+        margin-top: 20px;
     }
-
     .btn {
-        display: inline-block;
-        padding: 15px 30px;
-        background-color: #343a40;
-        color: #ffc107;
-        text-transform: uppercase;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-        background-color: #e0a800;
-    }
-
-    /* Footer */
-    footer {
-        background-color: #343a40;
+        padding: 10px 15px;
+        background-color: #007BFF; /* Exemple de couleur */
         color: white;
-        padding: 40px 20px;
-        text-align: center;
-    }
-
-    footer a {
-        color: #ffc107;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
         text-decoration: none;
-        transition: color 0.3s ease;
     }
-
-    footer a:hover {
-        color: #e0a800;
+    .btn:hover {
+        background-color: #0056b3; /* Couleur au survol */
     }
 </style>
 
@@ -132,17 +53,17 @@
     <div class="cart-items">
         {% for item in cartItems %}
         <div class="cart-item">
-            <img src="{{ item.lesson.image }}" alt="{{ item.lesson.title }}">
+            <img src="{{ asset('images/' ~ item.item.image) }}" alt="{{ item.item.title }}"> {# Assurez-vous que item.item.image contient le bon chemin #}
             <div>
-                <h3>{{ item.lesson.title }}</h3>
-                <p>{{ item.lesson.content }}</p>
+                <h3>{{ item.item.title }}</h3>
+                <p>Quantité : {{ item.quantity }}</p>
             </div>
             <div>
-                <p class="price">{{ item.lesson.price|number_format(2, ',', ' ') }} €</p>
-                <form action="{{ path('cart_remove', {id: item.lesson.id}) }}" method="post" style="display:inline;">
+                <p class="price">{{ (item.price / 100)|number_format(2, ',', ' ') }} €</p>
+                <form action="{{ path('cart_remove', {type: item.type ~ 's', id: item.item.id}) }}" method="post" style="display:inline;">
                     <button type="submit" class="btn">Supprimer</button>
                 </form>
-                <form action="{{ path('app_add_to_cart', {id: item.lesson.id}) }}" method="post" style="display:inline;">
+                <form action="{{ path('app_add_course_to_cart', {id: item.item.id}) }}" method="post" style="display:inline;">
                     <input type="number" name="quantity" value="{{ item.quantity }}" class="quantity-input" min="1" />
                     <button type="submit" class="btn">Mettre à jour</button>
                 </form>
@@ -151,12 +72,10 @@
         {% endfor %}
     </div>
 
-    <p class="total">Total: {{ total|number_format(2, ',', ' ') }} €</p>
+    <p class="total">Total: {{ (total / 100)|number_format(2, ',', ' ') }} €</p>
 
+    <a href="{{ path('cart_checkout') }}" class="btn">Continuer vers le paiement</a>
     <a href="{{ path('app_courses') }}" class="btn">Continuer vos achats</a>
-   
-
 </section>
-
 
 {% endblock %}

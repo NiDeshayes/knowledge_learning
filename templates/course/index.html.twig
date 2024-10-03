@@ -136,7 +136,7 @@
                     <img src="{{ asset('images/' ~ course.image) }}" alt="{{ course.title }}">
                     <h2>{{ course.title }}</h2>
                     <p class="course-theme">{{ course.theme }}</p>
-                    <p class="course-price">{{ course.price }} €</p>
+                    <p class="course-price">{{ course.price / 100 }} €</p> {# Division du prix par 100 pour l'affichage #}
                 </a>
             </div>
         {% endfor %}

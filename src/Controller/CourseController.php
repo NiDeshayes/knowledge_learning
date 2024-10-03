@@ -1,7 +1,5 @@
 <?php 
 
-// src/Controller/CourseController.php
-
 namespace App\Controller;
 
 use App\Repository\CourseRepository;
@@ -11,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\SessionInterface; // Importer SessionInterface
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CourseController extends AbstractController
@@ -23,18 +20,21 @@ class CourseController extends AbstractController
     public function __construct(
         CourseRepository $courseRepository, 
         StripeService $stripeService, 
-        CartService $cartService,
-        SessionInterface $session // Injection de SessionInterface
+        CartService $cartService // Injection correcte
     ) {
         $this->courseRepository = $courseRepository;
         $this->stripeService = $stripeService;
         $this->cartService = $cartService;
-        $this->session = $session; // Initialisation de la session
     }
 
     #[Route('/courses', name: 'app_courses', methods: ['GET'])]
     public function index(Request $request): Response
     {
+        $session = $request->getSession();
+        $cart = $session->get('cart', []);
+        // Accéder à la session via la requête
+        $cart = $this->cartService->getCartItems(); // Utiliser CartService pour obtenir le panier
+
         // Récupérer le terme de recherche depuis la requête
         $searchTerm = $request->query->get('search', '');
 
@@ -48,6 +48,7 @@ class CourseController extends AbstractController
         return $this->render('course/index.html.twig', [
             'courses' => $courses,
             'searchTerm' => $searchTerm,
+            'cart' => $cart, // Passer le panier à la vue
         ]);
     }
 

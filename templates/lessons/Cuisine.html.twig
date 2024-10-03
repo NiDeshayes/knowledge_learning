@@ -1,0 +1,181 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon de Cuisine - Introduction à la Cuisine Italienne{% endblock %}
+
+{% block body %}
+    <h1>Leçon de Cuisine : Introduction à la Cuisine Italienne</h1>
+
+    <h2>Introduction à la Cuisine Italienne</h2>
+    <p>La cuisine italienne est connue pour sa simplicité et la qualité de ses ingrédients. Dans cette leçon, nous allons explorer quelques plats classiques et les techniques de base qui vous permettront de réaliser des recettes italiennes délicieuses.</p>
+
+    <h2>Ingrédients de Base</h2>
+    <ul>
+        <li><strong>Pâtes</strong> : Un aliment de base dans de nombreux plats italiens. Les pâtes fraîches ou sèches peuvent être utilisées selon la recette.</li>
+        <li><strong>Tomates</strong> : Utilisées fraîches ou en sauce, elles sont essentielles dans de nombreux plats.</li>
+        <li><strong>Basilic</strong> : Une herbe aromatique qui apporte une saveur unique aux plats.</li>
+        <li><strong>Huile d'Olive</strong> : Essentielle pour la cuisson et l'assaisonnement.</li>
+    </ul>
+
+    <h2>Recette Classique : Spaghetti à la Carbonara</h2>
+    <h3>Ingrédients :</h3>
+    <ul>
+        <li>400 g de spaghetti</li>
+        <li>150 g de guanciale ou de pancetta</li>
+        <li>4 jaunes d'œufs</li>
+        <li>100 g de fromage pecorino râpé</li>
+        <li>Sel et poivre noir au goût</li>
+    </ul>
+
+    <h3>Instructions :</h3>
+    <ol>
+        <li>Faites cuire les spaghetti dans une grande casserole d'eau salée jusqu'à ce qu'ils soient al dente.</li>
+        <li>Dans une poêle, faites revenir le guanciale ou la pancetta jusqu'à ce qu'il soit croustillant.</li>
+        <li>Dans un bol, mélangez les jaunes d'œufs et le fromage pecorino râpé. Ajoutez du poivre noir au goût.</li>
+        <li>Une fois les pâtes cuites, égouttez-les et ajoutez-les à la poêle avec le guanciale. Retirez du feu.</li>
+        <li>Incorporez rapidement le mélange d'œufs et de fromage aux pâtes pour obtenir une sauce crémeuse.</li>
+        <li>Servez immédiatement avec du fromage supplémentaire et du poivre noir.</li>
+    </ol>
+
+    <h2>Regardez cette vidéo pour apprendre à préparer des spaghetti à la carbonara :</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hGu2hmir-ic?si=c_qKDaPgmkIxV6Ei" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="qcm">
+        <h2>QCM - Questions à Choix Multiples</h2>
+        <form id="qcmForm">
+            <label>1. Quel est l'ingrédient principal des spaghetti à la carbonara ?
+                <select name="question1">
+                    <option value="A">Tomates</option>
+                    <option value="B">Guanciale</option>
+                    <option value="C">Basilic</option>
+                    <option value="D">Oignons</option>
+                </select>
+            </label>
+
+            <label>2. Quels jaunes d'œufs sont utilisés dans la recette ?
+                <select name="question2">
+                    <option value="A">Entiers</option>
+                    <option value="B">Seuls les blancs</option>
+                    <option value="C">Seuls les jaunes</option>
+                    <option value="D">Pas d'œufs</option>
+                </select>
+            </label>
+
+            <label>3. Quel fromage est traditionnellement utilisé dans ce plat ?
+                <select name="question3">
+                    <option value="A">Parmesan</option>
+                    <option value="B">Mozzarella</option>
+                    <option value="C">Pecorino</option>
+                    <option value="D">Gorgonzola</option>
+                </select>
+            </label>
+
+            <label>4. Quelle est la texture souhaitée des spaghetti lors de la cuisson ?
+                <select name="question4">
+                    <option value="A">Mou</option>
+                    <option value="B">Al dente</option>
+                    <option value="C">Dur</option>
+                    <option value="D">Trop cuit</option>
+                </select>
+            </label>
+
+            <label>5. Quelle herbe aromatique est souvent ajoutée aux plats italiens ?
+                <select name="question5">
+                    <option value="A">Persil</option>
+                    <option value="B">Ciboulette</option>
+                    <option value="C">Basilic</option>
+                    <option value="D">Thym</option>
+                </select>
+            </label>
+
+            <label>6. Quel type d'huile est recommandé pour la cuisine italienne ?
+                <select name="question6">
+                    <option value="A">Huile de colza</option>
+                    <option value="B">Huile d'olive</option>
+                    <option value="C">Huile de tournesol</option>
+                    <option value="D">Huile de noix</option>
+                </select>
+            </label>
+
+            <label>7. Quel type de viande est traditionnellement utilisé dans la carbonara ?
+                <select name="question7">
+                    <option value="A">Boeuf</option>
+                    <option value="B">Poulet</option>
+                    <option value="C">Guanciale</option>
+                    <option value="D">Poisson</option>
+                </select>
+            </label>
+
+            <label>8. Quelle méthode est utilisée pour épaissir la sauce dans les spaghetti à la carbonara ?
+                <select name="question8">
+                    <option value="A">Ajout de farine</option>
+                    <option value="B">Incorporation de crème</option>
+                    <option value="C">Mélange d'œufs et de fromage</option>
+                    <option value="D">Réduction de la sauce</option>
+                </select>
+            </label>
+
+            <label>9. Quels autres plats italiens sont populaires ?
+                <select name="question9">
+                    <option value="A">Sushi et Tacos</option>
+                    <option value="B">Pizza et Lasagne</option>
+                    <option value="C">Burgers et Frites</option>
+                    <option value="D">Sushis et Dim Sum</option>
+                </select>
+            </label>
+
+            <label>10. Que signifie "al dente" ?
+                <select name="question10">
+                    <option value="A">Trop cuit</option>
+                    <option value="B">Bien cuit</option>
+                    <option value="C">Cuit à point</option>
+                    <option value="D">Pas cuit</option>
+                </select>
+            </label>
+
+            <button type="submit">Soumettre</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Leçon de Cuisine</p>
+    </footer>
+
+    <script>
+        document.getElementById('qcmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                question1: 'B',
+                question2: 'C',
+                question3: 'C',
+                question4: 'B',
+                question5: 'C',
+                question6: 'B',
+                question7: 'C',
+                question8: 'C',
+                question9: 'B',
+                question10: 'C'
+            };
+
+            let score = 0;
+            const userAnswers = new FormData(this);
+
+            for (let [question, answer] of userAnswers.entries()) {
+                if (answers[question] === answer) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            if (score === 10) {
+                resultDiv.textContent = 'Bravo ! Vous avez obtenu un score parfait de 10/10 !';
+                resultDiv.classList.remove('error');
+            } else {
+                resultDiv.textContent = `Vous avez obtenu ${score}/10. Essayez encore !`;
+                resultDiv.classList.add('error');
+            }
+        });
+    </script>
+{% endblock %}

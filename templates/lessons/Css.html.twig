@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon sur CSS - Introduction à la Feuille de Style{% endblock %}
+
+{% block body %}
+    <h1>Leçon sur CSS : Introduction à la Feuille de Style</h1>
+
+    <h2>Qu'est-ce que CSS ?</h2>
+    <p>CSS, ou Cascading Style Sheets, est un langage utilisé pour décrire l'apparence et la mise en page d'un document HTML. Il permet de séparer le contenu (HTML) de la présentation (style), facilitant ainsi la maintenance et la flexibilité des pages web.</p>
+
+    <!-- Ajout de la vidéo YouTube -->
+    <h2>Vidéo explicative sur CSS</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Y80juYcu3ZI?si=8Lbk7XA45Ea_5Pfz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <h2>Les Sélecteurs CSS</h2>
+    <p>Les sélecteurs CSS sont utilisés pour cibler les éléments HTML que vous souhaitez styliser. Voici quelques types de sélecteurs :</p>
+    <ul>
+        <li><strong>Sélecteur de type</strong> : cible tous les éléments d'un type donné (ex : <code>p</code> pour tous les paragraphes).</li>
+        <li><strong>Sélecteur de classe</strong> : cible les éléments ayant une classe spécifique (ex : <code>.ma-classe</code> pour tous les éléments avec <code>class="ma-classe"</code>).</li>
+        <li><strong>Sélecteur d'identifiant</strong> : cible un élément unique ayant un ID spécifique (ex : <code>#mon-id</code> pour l'élément avec <code>id="mon-id"</code>).</li>
+        <li><strong>Sélecteur descendant</strong> : cible les éléments à l'intérieur d'autres éléments (ex : <code>div p</code> pour tous les paragraphes dans un <code>div</code>).</li>
+    </ul>
+
+    <h2>Exemple de Code CSS</h2>
+    <p>Voici un exemple simple de feuille de style CSS :</p>
+    <pre>
+        <code>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.5;
+            padding: 0 20px;
+        }
+
+        .ma-classe {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        #mon-id {
+            color: red;
+        }
+        </code>
+    </pre>
+
+    <h2>Quiz : Testez vos connaissances sur CSS</h2>
+    <form id="quizForm">
+        <ol>
+            <li>Qu'est-ce que CSS ?
+                <ul>
+                    <li><input type="radio" name="q1" value="b"> Un langage de mise en page pour HTML</li>
+                    <li><input type="radio" name="q1" value="a"> Un langage de programmation</li>
+                    <li><input type="radio" name="q1" value="c"> Un framework JavaScript</li>
+                </ul>
+            </li>
+
+            <li>Quel sélecteur cible tous les éléments ayant un ID spécifique ?
+                <ul>
+                    <li><input type="radio" name="q2" value="a"> #mon-id</li>
+                    <li><input type="radio" name="q2" value="b"> .mon-id</li>
+                    <li><input type="radio" name="q2" value="c"> p</li>
+                </ul>
+            </li>
+
+            <li>Quelle propriété est utilisée pour changer la couleur du texte ?
+                <ul>
+                    <li><input type="radio" name="q3" value="b"> color</li>
+                    <li><input type="radio" name="q3" value="a"> background-color</li>
+                    <li><input type="radio" name="q3" value="c"> font-size</li>
+                </ul>
+            </li>
+
+            <li>Comment lier un fichier CSS externe à une page HTML ?
+                <ul>
+                    <li><input type="radio" name="q4" value="a"> &lt;link rel="stylesheet" href="styles.css"&gt;</li>
+                    <li><input type="radio" name="q4" value="b"> &lt;script src="styles.css"&gt;</li>
+                    <li><input type="radio" name="q4" value="c"> &lt;style src="styles.css"&gt;</li>
+                </ul>
+            </li>
+
+            <li>Quel sélecteur cible tous les éléments d’un type donné, comme tous les paragraphes ?
+                <ul>
+                    <li><input type="radio" name="q5" value="c"> p</li>
+                    <li><input type="radio" name="q5" value="a"> #p</li>
+                    <li><input type="radio" name="q5" value="b"> .p</li>
+                </ul>
+            </li>
+
+            <li>Quelle propriété CSS est utilisée pour créer de l’espace à l’intérieur d’un élément ?
+                <ul>
+                    <li><input type="radio" name="q6" value="a"> padding</li>
+                    <li><input type="radio" name="q6" value="b"> margin</li>
+                    <li><input type="radio" name="q6" value="c"> border</li>
+                </ul>
+            </li>
+
+            <li>Quel sélecteur CSS est utilisé pour cibler des éléments ayant une classe spécifique ?
+                <ul>
+                    <li><input type="radio" name="q7" value="b"> .classe</li>
+                    <li><input type="radio" name="q7" value="a"> #classe</li>
+                    <li><input type="radio" name="q7" value="c"> classe</li>
+                </ul>
+            </li>
+
+            <li>Laquelle des méthodes suivantes est une bonne pratique pour organiser le code CSS ?
+                <ul>
+                    <li><input type="radio" name="q8" value="a"> Utiliser des classes et des identifiants significatifs</li>
+                    <li><input type="radio" name="q8" value="b"> Utiliser seulement du CSS en ligne</li>
+                    <li><input type="radio" name="q8" value="c"> Utiliser uniquement des sélecteurs d'éléments</li>
+                </ul>
+            </li>
+        </ol>
+        <input type="submit" value="Soumettre">
+    </form>
+
+    <div id="quizResult" style="margin-top: 20px;"></div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Réponses correctes
+            const correctAnswers = {
+                q1: 'b',
+                q2: 'a',
+                q3: 'b',
+                q4: 'a',
+                q5: 'c',
+                q6: 'a',
+                q7: 'b',
+                q8: 'a'
+            };
+
+            let score = 0;
+            let totalQuestions = 8;
+            
+            // Vérification des réponses
+            for (let i = 1; i <= totalQuestions; i++) {
+                let question = document.querySelector(`input[name="q${i}"]:checked`);
+                if (question && question.value === correctAnswers[`q${i}`]) {
+                    score++;
+                }
+            }
+
+            // Afficher le résultat
+            let resultDiv = document.getElementById('quizResult');
+            if (score === totalQuestions) {
+                resultDiv.innerHTML = `<p>Bravo ! Vous avez eu toutes les réponses correctes. Score : ${score}/${totalQuestions}</p>`;
+                resultDiv.style.color = 'green';
+            } else {
+                resultDiv.innerHTML = `<p>Vous avez eu ${score}/${totalQuestions}. Essayez encore !</p>`;
+                resultDiv.style.color = 'red';
+            }
+        });
+    </script>
+{% endblock %}

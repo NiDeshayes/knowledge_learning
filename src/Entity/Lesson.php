@@ -35,6 +35,9 @@ class Lesson
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $stripePriceId = null; // Propriété pour l'ID du prix Stripe
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeProductId = null; // Propriété pour l'ID du produit Stripe
+
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Course $course = null;
@@ -52,7 +55,6 @@ class Lesson
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -64,7 +66,6 @@ class Lesson
     public function setContent(string $content): static
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -76,7 +77,6 @@ class Lesson
     public function setVideoUrl(string $videoUrl): static
     {
         $this->videoUrl = $videoUrl;
-
         return $this;
     }
 
@@ -88,7 +88,6 @@ class Lesson
     public function setDuration(int $duration): static
     {
         $this->duration = $duration;
-
         return $this;
     }
 
@@ -100,31 +99,39 @@ class Lesson
     public function setPrice(float $price): static
     {
         $this->price = $price;
-
         return $this;
     }
 
-    public function getImage(): ?string // Méthode pour obtenir l'image
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): static // Méthode pour définir l'image
+    public function setImage(?string $image): static
     {
         $this->image = $image;
-
         return $this;
     }
 
-    public function getStripePriceId(): ?string // Méthode pour obtenir l'ID du prix Stripe
+    public function getStripePriceId(): ?string
     {
         return $this->stripePriceId;
     }
 
-    public function setStripePriceId(?string $stripePriceId): static // Méthode pour définir l'ID du prix Stripe
+    public function setStripePriceId(?string $stripePriceId): static
     {
         $this->stripePriceId = $stripePriceId;
+        return $this;
+    }
 
+    public function getStripeProductId(): ?string
+    {
+        return $this->stripeProductId;
+    }
+
+    public function setStripeProductId(?string $stripeProductId): static
+    {
+        $this->stripeProductId = $stripeProductId;
         return $this;
     }
 
@@ -136,7 +143,6 @@ class Lesson
     public function setCourse(?Course $course): static
     {
         $this->course = $course;
-
         return $this;
     }
 }

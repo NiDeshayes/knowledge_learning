@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon de Piano - Introduction aux Accords de Base{% endblock %}
+
+{% block body %}
+    <h1>Leçon de Piano : Introduction aux Accords de Base</h1>
+
+    <h2>Introduction aux Accords de Base</h2>
+    <p>Le piano est un instrument polyvalent qui permet d'explorer une grande variété de styles musicaux. Dans cette leçon, nous allons découvrir les accords de base, qui sont essentiels pour jouer de nombreuses chansons.</p>
+
+    <h2>Qu'est-ce qu'un Accord ?</h2>
+    <p>Un accord est un ensemble de notes jouées ensemble. Les accords sont construits à partir de notes fondamentales et de leurs harmoniques. Les accords majeurs et mineurs sont les plus couramment utilisés.</p>
+
+    <h2>Les Accords Majeurs :</h2>
+    <ul>
+        <li><strong>Do majeur (C)</strong> : Accord joyeux, souvent utilisé dans les chansons pop.</li>
+        <li><strong>Ré majeur (D)</strong> : Accord majeur très fréquent dans la musique.</li>
+        <li><strong>Mi majeur (E)</strong> : Accord avec un son plein, souvent utilisé dans le rock.</li>
+    </ul>
+
+    <h2>Les Accords Mineurs :</h2>
+    <ul>
+        <li><strong>La mineur (Am)</strong> : Accord avec une sonorité triste.</li>
+        <li><strong>Ré mineur (Dm)</strong> : Utilisé pour créer une atmosphère émotionnelle.</li>
+        <li><strong>Mi mineur (Em)</strong> : Simple à jouer, excellent pour les débutants.</li>
+    </ul>
+
+    <h2>Regardez cette vidéo pour apprendre à jouer les accords de base :</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6f3N3-fLwAA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allowfullscreen"></iframe>
+
+    <div class="qcm">
+        <h2>QCM - Questions à Choix Multiples</h2>
+        <form id="qcmForm">
+            <label>1. Quel est l'accord majeur mentionné dans la leçon ?
+                <select name="question1">
+                    <option value="A">Do majeur (C)</option>
+                    <option value="B">La mineur (Am)</option>
+                    <option value="C">Ré mineur (Dm)</option>
+                    <option value="D">Fa (F)</option>
+                </select>
+            </label>
+
+            <label>2. Quelle caractéristique a l'accord La mineur ?
+                <select name="question2">
+                    <option value="A">Joyeux</option>
+                    <option value="B">Triste</option>
+                    <option value="C">Énergique</option>
+                    <option value="D">Calme</option>
+                </select>
+            </label>
+
+            <label>3. Quel accord est souvent utilisé dans le rock ?
+                <select name="question3">
+                    <option value="A">Mi mineur (Em)</option>
+                    <option value="B">Ré majeur (D)</option>
+                    <option value="C">Si (B)</option>
+                    <option value="D">Sol (G)</option>
+                </select>
+            </label>
+
+            <label>4. Quel accord est considéré comme simple à jouer pour les débutants ?
+                <select name="question4">
+                    <option value="A">Ré majeur (D)</option>
+                    <option value="B">Mi mineur (Em)</option>
+                    <option value="C">Fa (F)</option>
+                    <option value="D">La (A)</option>
+                </select>
+            </label>
+
+            <label>5. Quels types d'accords sont les plus courants dans la musique ?
+                <select name="question5">
+                    <option value="A">Majeurs et Mineurs</option>
+                    <option value="B">Septièmes et Neuvièmes</option>
+                    <option value="C">Augmentés et Diminués</option>
+                    <option value="D">Quartes et Quintes</option>
+                </select>
+            </label>
+
+            <label>6. Dans quel type de musique l'accord Do majeur (C) est-il souvent utilisé ?
+                <select name="question6">
+                    <option value="A">Classique</option>
+                    <option value="B">Jazz</option>
+                    <option value="C">Pop</option>
+                    <option value="D">Blues</option>
+                </select>
+            </label>
+
+            <label>7. Quel est l'accord majeur associé à la note Ré ?
+                <select name="question7">
+                    <option value="A">Do majeur (C)</option>
+                    <option value="B">Ré majeur (D)</option>
+                    <option value="C">Mi (E)</option>
+                    <option value="D">Fa (F)</option>
+                </select>
+            </label>
+
+            <label>8. Les accords sont construits à partir de :
+                <select name="question8">
+                    <option value="A">Rythmes</option>
+                    <option value="B">Sons de batterie</option>
+                    <option value="C">Notes fondamentales et harmoniques</option>
+                    <option value="D">Silences</option>
+                </select>
+            </label>
+
+            <label>9. Quel accord a un son plein et riche ?
+                <select name="question9">
+                    <option value="A">Do majeur (C)</option>
+                    <option value="B">Ré majeur (D)</option>
+                    <option value="C">Mi majeur (E)</option>
+                    <option value="D">La mineur (Am)</option>
+                </select>
+            </label>
+
+            <label>10. Quel est l'accord mineur souvent utilisé ?
+                <select name="question10">
+                    <option value="A">Do majeur (C)</option>
+                    <option value="B">Ré majeur (D)</option>
+                    <option value="C">La mineur (Am)</option>
+                    <option value="D">Mi (E)</option>
+                </select>
+            </label>
+
+            <button type="submit">Soumettre</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Leçon de Piano</p>
+    </footer>
+
+    <script>
+        document.getElementById('qcmForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                question1: 'A',
+                question2: 'B',
+                question3: 'A',
+                question4: 'B',
+                question5: 'A',
+                question6: 'C',
+                question7: 'B',
+                question8: 'C',
+                question9: 'C',
+                question10: 'C'
+            };
+
+            let score = 0;
+            const userAnswers = new FormData(this);
+
+            for (let [question, answer] of userAnswers.entries()) {
+                if (answers[question] === answer) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            if (score === 10) {
+                resultDiv.textContent = 'Bravo ! Vous avez obtenu un score parfait de 10/10 !';
+                resultDiv.classList.remove('error');
+            } else {
+                resultDiv.textContent = `Vous avez obtenu ${score}/10. Essayez encore !`;
+                resultDiv.classList.add('error');
+            }
+        });
+    </script>
+{% endblock %}

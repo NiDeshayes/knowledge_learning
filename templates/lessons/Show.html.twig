@@ -1,0 +1,11 @@
+{# templates/lessons/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ lesson.title }}</h1>
+    <p>Détails de la leçon...</p>
+    {# Ajoutez le contenu de la leçon ici #}
+{% endblock %}

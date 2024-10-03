@@ -126,7 +126,7 @@
     <div class="course-details">
         <img src="{{ asset('images/' ~ course.image) }}" alt="{{ course.title }}" class="course-image">
         <p class="course-theme"><strong>Thème :</strong> {{ course.theme }}</p>
-        <p class="course-price"><strong>Prix :</strong> {{ course.price }} €</p>
+        <p class="course-price"><strong>Prix :</strong> {{ course.price /100 }} €</p>
         <p class="course-description">{{ course.description }}</p>
 
         <h2>Choisissez une option :</h2>

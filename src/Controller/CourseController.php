@@ -11,19 +11,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface; // Importer SessionInterface
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CourseController extends AbstractController
 {
     private CourseRepository $courseRepository;
     private StripeService $stripeService;
-    private CartService $cartService; // Ajout de CartService
+    private CartService $cartService;
 
-    public function __construct(CourseRepository $courseRepository, StripeService $stripeService, CartService $cartService)
-    {
+    public function __construct(
+        CourseRepository $courseRepository, 
+        StripeService $stripeService, 
+        CartService $cartService,
+        SessionInterface $session // Injection de SessionInterface
+    ) {
         $this->courseRepository = $courseRepository;
         $this->stripeService = $stripeService;
-        $this->cartService = $cartService; // Injection de CartService
+        $this->cartService = $cartService;
+        $this->session = $session; // Initialisation de la session
     }
 
     #[Route('/courses', name: 'app_courses', methods: ['GET'])]

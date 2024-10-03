@@ -10,7 +10,6 @@ use Symfony\Component\Routing\RouterInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-
 class AccessDeniedListener
 {
     private $logger;

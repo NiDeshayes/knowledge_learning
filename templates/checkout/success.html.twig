@@ -9,6 +9,20 @@
         <h1>Payment Successful</h1>
         <p>Thank you for your purchase! Your payment was successful.</p>
         <p>You will receive a confirmation email with your order details.</p>
-        <a href="{{ path('app_courses') }}" class="btn btn-primary">Return to course</a>
+
+        {% if purchasedItems is not empty %}
+            <h2>Your Purchased Items:</h2>
+            <ul>
+                {% for item in purchasedItems %}
+                    <li>{{ item.title }}</li> {# Assurez-vous que 'title' existe dans votre entité #}
+                {% endfor %}
+            </ul>
+
+            {# Bouton pour ajouter le rôle #}
+            <form action="{{ path('add_role') }}" method="post">
+                <input type="hidden" name="role" value="ROLE_PURCHASER">
+                <button type="submit" class="btn btn-success">Obtenir mon role pour acceder à ma leçon</button>
+            </form>
+        {% endif %}
     </div>
 {% endblock %}

@@ -31,31 +31,37 @@ class LessonsController extends AbstractController
             ]);
         }
 
-        if ($this->isGranted('ROLE_Guitare')) {
+        if ($this->isGranted('ROLE_CURSUS D’INITIATION à LA GUITARE')) {
             return $this->render('lessons/Guitare.html.twig', [
                 'lessons' => $lessons, // Vous pouvez filtrer les leçons si nécessaire
             ]);
         }
 
-        if ($this->isGranted('ROLE_PIANO')) {
+        if ($this->isGranted('ROLE_CURSUS D’INITIATION AU PIANO')) {
             return $this->render('lessons/Piano.html.twig', [
                 'lessons' => $lessons, // Idem pour ce rôle
             ]);
         }
 
-        if ($this->isGranted('ROLE_Http')) {
+        if ($this->isGranted('ROLE_CURSUS D’INITIATION AU DéVELOPPEMENT WEB')) {
             return $this->render('lessons/Htttp.html.twig', [
                 'lessons' => $lessons,
             ]);
         }
 
-        if ($this->isGranted('ROLE_Cuisine')) {
+        if ($this->isGranted('ROLE_CURSUS D’INITIATION à L’ART DU DRESSAGE CULINAIRE')) {
+            return $this->render('lessons/Dressage.html.twig', [
+                'lessons' => $lessons,
+            ]);
+        }
+
+        if ($this->isGranted('ROLE_CURSUS D’INITIATION à LA CUISINE')) {
             return $this->render('lessons/Cuisine.html.twig', [
                 'lessons' => $lessons,
             ]);
         }
 
-        if ($this->isGranted('ROLE_Jardinage')) {
+        if ($this->isGranted('ROLE_CURSUS D’INITIATION AU JARDINAGE')) {
             return $this->render('lessons/Jardinage.html.twig', [
                 'lessons' => $lessons,
             ]);

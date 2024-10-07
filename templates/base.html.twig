@@ -9,16 +9,16 @@
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <style>
         /* Styles personnalisés pour la nav et le footer */
-         /* Styles pour le logo */
-    .logo img {
-        border-radius: 10px; /* Arrondir les coins du logo */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajouter une ombre pour un effet de profondeur */
-        transition: transform 0.3s; /* Animation pour le survol */
-    }
+        .logo img {
+            border-radius: 10px; /* Arrondir les coins du logo */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajouter une ombre pour un effet de profondeur */
+            transition: transform 0.3s; /* Animation pour le survol */
+        }
 
-    .logo img:hover {
-        transform: scale(1.05); /* Zoomer légèrement lors du survol */
-    }
+        .logo img:hover {
+            transform: scale(1.05); /* Zoomer légèrement lors du survol */
+        }
+
         header {
             background-color: #384050; /* Couleur de la barre de navigation */
         }
@@ -29,10 +29,23 @@
 
         .nav-link {
             color: white; /* Couleur du texte des liens */
+            font-size: 1.2rem; /* Taille du texte augmentée */
+            padding: 10px 20px; /* Agrandir la zone cliquable */
+            margin-right: 15px; /* Ajouter de l'espace entre les liens */
+            border: 2px solid transparent; /* Bordure pour le style */
+            border-radius: 5px; /* Arrondir légèrement les boutons */
+            transition: all 0.3s ease; /* Animation sur les changements */
         }
 
         .nav-link:hover {
             color: #ffc107; /* Couleur du texte des liens au survol */
+            background-color: #505b72; /* Ajouter une couleur d'arrière-plan au survol */
+            border-color: #ffc107; /* Ajouter une bordure colorée au survol */
+        }
+
+        .nav-link.active {
+            color: #fff; /* Couleur du texte du lien actif */
+            border-color: #ffc107; /* Bordure pour le lien actif */
         }
     </style>
 </head>
@@ -40,23 +53,37 @@
     <header class="text-white">
         <div class="container d-flex justify-content-between align-items-center py-3">
             <div class="logo">
-                <img src="{{ asset('images/logo.png') }}" alt="" width="200" height="150">
+                <img src="{{ asset('images/logo.png') }}" alt="" width="100" height="50">
                 <span class="ml-2 h4"></span>
             </div>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_home_index') }}">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('cart') }}">Panier</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_courses') }}">Cursus</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_lessons') }}">Leçons</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_home_index' %}active{% endif %}" href="{{ path('app_home_index') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'cart' %}active{% endif %}" href="{{ path('cart') }}">Panier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_courses' %}active{% endif %}" href="{{ path('app_courses') }}">Cursus</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_lessons' %}active{% endif %}" href="{{ path('app_lessons') }}">Leçons</a>
+                    </li>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item"><a class="nav-link" href="{{ path('app_admin_index') }}">Admin</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'app_admin_index' %}active{% endif %}" href="{{ path('app_admin_index') }}">Admin</a>
+                        </li>
                     {% endif %}
                     
                     {% if app.user %}
-                        <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                        </li>
                     {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}">Se connecter</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'app_login' %}active{% endif %}" href="{{ path('app_login') }}">Se connecter</a>
+                        </li>
                     {% endif %}
                 </ul>
             </nav>

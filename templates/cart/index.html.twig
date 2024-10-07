@@ -4,42 +4,106 @@
 
 {% block body %}
 <style>
-    /* Styles globaux et autres styles ici... */
+    /* Styles globaux */
+    body {
+        font-family: 'Arial', sans-serif; /* Police de base */
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9; /* Couleur de fond */
+    }
+
+
+    
+
+    /* Section du panier */
     .cart-section {
+        max-width: 800px; /* Largeur maximale */
+        margin: 20px auto; /* Centrage */
         padding: 20px;
+        background-color: white; /* Couleur de fond du panier */
+        border-radius: 8px; /* Coins arrondis */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
     }
+
     .cart-title {
-        font-size: 1.5em;
+        font-size: 1.8em; /* Taille du titre */
         margin-bottom: 20px;
+        color: #333; /* Couleur du texte */
+        text-align: left; /* Alignement à gauche */
     }
+
+    .cart-items {
+        border-top: 2px solid #007BFF; /* Ligne de séparation */
+        padding-top: 15px; /* Espace entre le titre et les éléments */
+    }
+
     .cart-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
+        display: flex; /* Flexbox pour l'alignement */
+        align-items: center; /* Centrer verticalement */
+        margin-bottom: 20px; /* Espace entre les éléments */
+        padding: 15px; /* Espace intérieur */
+        border-bottom: 1px solid #ddd; /* Bord inférieur léger */
     }
+
     .cart-item img {
-        width: 100px; /* Ajustez la largeur selon vos besoins */
-        height: auto;
-        margin-right: 20px;
+        width: 100px; /* Largeur d'image */
+        height: auto; /* Hauteur automatique */
+        margin-right: 20px; /* Espace à droite de l'image */
+        border-radius: 5px; /* Coins arrondis des images */
     }
+
+    .cart-item h3 {
+        margin: 0; /* Enlever marges par défaut */
+        color: #007BFF; /* Couleur du titre */
+    }
+
     .price {
-        font-weight: bold;
+        font-weight: bold; /* Mettre en gras */
+        color: #007BFF; /* Couleur des prix */
+        font-size: 1.2em; /* Taille du texte */
     }
+
     .total {
-        font-size: 1.2em;
-        margin-top: 20px;
+        font-size: 1.5em; /* Taille totale */
+        margin-top: 20px; /* Espace au-dessus */
+        text-align: right; /* Alignement à droite */
     }
+
     .btn {
-        padding: 10px 15px;
-        background-color: #007BFF; /* Exemple de couleur */
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        text-decoration: none;
+        padding: 10px 15px; /* Espace intérieur */
+        background-color: #28a745; /* Couleur verte */
+        color: white; /* Couleur du texte */
+        border: none; /* Pas de bordure */
+        cursor: pointer; /* Curseur pointeur */
+        border-radius: 5px; /* Coins arrondis */
+        text-decoration: none; /* Pas de soulignement */
+        transition: background-color 0.3s ease; /* Transition pour hover */
     }
+
     .btn:hover {
-        background-color: #0056b3; /* Couleur au survol */
+        background-color: #218838; /* Couleur au survol */
+    }
+
+    .quantity-input {
+        width: 50px; /* Largeur du champ quantité */
+        margin-right: 10px; /* Espace à droite */
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+        .cart-item {
+            flex-direction: column; /* Changer la direction en colonne pour petits écrans */
+            align-items: flex-start; /* Alignement à gauche */
+        }
+
+        .cart-item img {
+            margin-bottom: 10px; /* Espace en bas pour l'image */
+        }
+
+        .total {
+            text-align: center; /* Centrer le total sur petits écrans */
+        }
     }
 </style>
 
@@ -53,12 +117,12 @@
     <div class="cart-items">
         {% for item in cartItems %}
         <div class="cart-item">
-            <img src="{{ asset('images/' ~ item.item.image) }}" alt="{{ item.item.title }}"> {# Assurez-vous que item.item.image contient le bon chemin #}
+            <img src="{{ asset('images/' ~ item.item.image) }}" alt="{{ item.item.title }}">
             <div>
                 <h3>{{ item.item.title }}</h3>
                 <p>Quantité : {{ item.quantity }}</p>
             </div>
-            <div>
+            <div style="margin-left: auto;"> <!-- Alignement à droite -->
                 <p class="price">{{ (item.price / 100)|number_format(2, ',', ' ') }} €</p>
                 <form action="{{ path('cart_remove', {type: item.type ~ 's', id: item.item.id}) }}" method="post" style="display:inline;">
                     <button type="submit" class="btn">Supprimer</button>
@@ -72,10 +136,7 @@
         {% endfor %}
     </div>
 
-    <p class="total">Total: {{ (total / 100)|number_format(2, ',', ' ') }} €</p>
-
-    <a href="{{ path('cart_checkout') }}" class="btn">Continuer vers le paiement</a>
-    <a href="{{ path('app_courses') }}" class="btn">Continuer vos achats</a>
+    <p class="total">Total : {{ (total / 100)|number_format(2, ',', ' ') }} €</p>
+    <a href="{{ path('cart_checkout') }}" class="btn">Passer à la caisse</a>
 </section>
-
 {% endblock %}

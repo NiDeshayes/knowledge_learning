@@ -101,7 +101,7 @@ class StripeService
                                 'product_data' => [
                                     'name' => $lesson->getTitle(),
                                 ],
-                                'unit_amount' => (int)($lesson->getPrice() * 100), // Montant en centimes
+                                'unit_amount' => (int)($lesson->getPrice() ), 
                             ],
                             'quantity' => $item['quantity'] ?? 1,
                         ];
@@ -115,7 +115,7 @@ class StripeService
                                 'product_data' => [
                                     'name' => $course->getTitle(),
                                 ],
-                                'unit_amount' => (int)($course->getPrice() ), // Montant en centimes
+                                'unit_amount' => (int)($course->getPrice() ), 
                             ],
                             'quantity' => $item['quantity'] ?? 1,
                         ];

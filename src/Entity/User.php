@@ -27,11 +27,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $deliveryAddress = null;
 
-    #[ORM\Column(type: "json")]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false; // Nouveau champ pour vérifier l'activation du compte
 
     // Getters et Setters
     public function getId(): ?int
@@ -57,7 +60,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setEmail(string $email): self
     {
-        // Ajoutez une validation pour l'email ici si nécessaire
         $this->email = $email;
         return $this;
     }
@@ -81,7 +83,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER'; // Rôle par défaut
+        $roles[] = 'ROLE_USER';
         return array_unique($roles);
     }
 
@@ -96,7 +98,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
         }
-
         return $this;
     }
 
@@ -113,6 +114,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Clear temporary sensitive data here, if any
+        // Effacez les données sensibles
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+        return $this;
+    }
+    
+    public function hasRole(string $role): bool
+    {
+        return in_array($role, $this->roles, true);
     }
 }

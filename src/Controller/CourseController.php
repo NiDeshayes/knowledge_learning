@@ -20,7 +20,7 @@ class CourseController extends AbstractController
     public function __construct(
         CourseRepository $courseRepository, 
         StripeService $stripeService, 
-        CartService $cartService // Injection correcte
+        CartService $cartService
     ) {
         $this->courseRepository = $courseRepository;
         $this->stripeService = $stripeService;
@@ -31,14 +31,12 @@ class CourseController extends AbstractController
     public function index(Request $request): Response
     {
         $session = $request->getSession();
-        $cart = $session->get('cart', []);
-        // Accéder à la session via la requête
-        $cart = $this->cartService->getCartItems(); // Utiliser CartService pour obtenir le panier
+        $cart = $this->cartService->getCartItems();
 
         // Récupérer le terme de recherche depuis la requête
         $searchTerm = $request->query->get('search', '');
 
-        // Si un terme de recherche est présent, filtrer les résultats
+        // Filtrer les résultats selon le terme de recherche s'il existe
         if ($searchTerm) {
             $courses = $this->courseRepository->findBySearchTerm($searchTerm);
         } else {
@@ -48,7 +46,7 @@ class CourseController extends AbstractController
         return $this->render('course/index.html.twig', [
             'courses' => $courses,
             'searchTerm' => $searchTerm,
-            'cart' => $cart, // Passer le panier à la vue
+            'cart' => $cart,
         ]);
     }
 
@@ -75,23 +73,29 @@ class CourseController extends AbstractController
             throw $this->createNotFoundException('Course not found');
         }
 
+        // Récupérer les informations envoyées via le formulaire
         $lessonId = $request->request->get('lesson_id');
         $packageType = $request->request->get('package');
 
         if ($packageType === 'full') {
             // Ajouter tout le cours au panier
             $this->cartService->addCourseToCart($course);
+            $this->addFlash('success', 'The full course has been added to the cart.');
         } elseif ($lessonId) {
-            // Ajouter une leçon spécifique
+            // Rechercher la leçon par son ID
             $lesson = $course->getLessons()->filter(function ($lesson) use ($lessonId) {
-                return $lesson->getId() === $lessonId;
+                return $lesson->getId() === (int)$lessonId;
             })->first();
 
             if ($lesson) {
                 $this->cartService->addLessonToCart($lesson);
+                $this->addFlash('success', 'The lesson has been added to the cart.');
+            } else {
+                $this->addFlash('error', 'Lesson not found.');
             }
         }
 
+        // Rediriger vers la page de détail du cours
         return $this->redirectToRoute('app_course_detail', ['id' => $id]);
     }
 
@@ -101,14 +105,14 @@ class CourseController extends AbstractController
         $cartItems = $this->cartService->getCartItems();
         $lineItems = $this->stripeService->createLineItemsFromCart($cartItems);
         
-        // Ajouter les URLs de succès et d'annulation
+        // URLs de succès et d'annulation
         $successUrl = $this->generateUrl('app_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $cancelUrl = $this->generateUrl('app_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        // Créer la session de paiement
+        // Créer la session de paiement Stripe
         $session = $this->stripeService->createCheckoutSession($lineItems, $successUrl, $cancelUrl);
 
-        // Rediriger vers Stripe
+        // Rediriger vers Stripe pour le paiement
         return $this->redirect($session->url);
     }
 }

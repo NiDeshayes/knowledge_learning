@@ -25,7 +25,7 @@ security:
 
             remember_me:
                 secret: '%kernel.secret%'
-                lifetime: 604800
+                lifetime: 604800    
                 path: /login
                 always_remember_me: true
 
@@ -34,3 +34,4 @@ security:
         - { path: ^/courses, roles: ROLE_USER } # accès aux utilisateurs connectés
         - { path: ^/home, roles: ROLE_USER } # accès aux utilisateurs connectés
         - { path: ^/cart, roles: ROLE_USER } # accès aux utilisateurs connectés
+        - { path: ^/lessons, roles: ROLE_1 } # accès aux utilisateurs connectés

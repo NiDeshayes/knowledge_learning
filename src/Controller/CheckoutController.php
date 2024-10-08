@@ -1,4 +1,6 @@
-<?php
+<?php 
+
+// src/Controller/CheckoutController.php
 
 namespace App\Controller;
 
@@ -31,6 +33,9 @@ class CheckoutController extends AbstractController
             // Récupérer le panier de la session
             $cart = $session->get('cart', []);
 
+            // Indiquez que l'utilisateur a acheté quelque chose
+            $hasPurchased = false;
+
             foreach ($cart as $type => $items) {
                 foreach ($items as $id => $item) {
                     if ($type === 'lessons') {
@@ -58,7 +63,14 @@ class CheckoutController extends AbstractController
                             }
                         }
                     }
+                    // Marque l'utilisateur comme ayant effectué un achat
+                    $hasPurchased = true;
                 }
+            }
+
+            // Si l'utilisateur a acheté quelque chose, ajoutez le rôle ROLE_1
+            if ($hasPurchased) {
+                $user->addRole('ROLE_1');
             }
 
             $this->entityManager->persist($user);

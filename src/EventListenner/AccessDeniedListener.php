@@ -12,8 +12,8 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AccessDeniedListener
 {
-    private $logger;
-    private $router;
+    private LoggerInterface $logger;
+    private RouterInterface $router;
 
     public function __construct(LoggerInterface $logger, RouterInterface $router)
     {
@@ -21,14 +21,15 @@ class AccessDeniedListener
         $this->router = $router;
     }
 
-    public function onKernelException(ExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
 
         if ($exception instanceof AccessDeniedException || $exception instanceof AccessDeniedHttpException) {
             $this->logger->warning('Access denied: ' . $exception->getMessage());
-            // Rediriger vers la page de connexion
-            $response = new RedirectResponse($this->router->generate('app_login'));
+
+            // Rediriger vers la page d'accueil
+            $response = new RedirectResponse($this->router->generate('app_home_index'));
             $event->setResponse($response);
         }
     }

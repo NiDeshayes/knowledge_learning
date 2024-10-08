@@ -12,7 +12,7 @@
             <p>Cette leçon vous apprendra les accords de base nécessaires pour jouer vos premières chansons.</p>
             <button class="validate-btn" onclick="validateLesson('Leçon 1')">Valider cette leçon</button>
 
-            {% if is_granted('ROLE_LEçON 1 : ACCORDS DE BASE') %}
+            {% if is_granted('ROLE_▪ LEçON N°1 : DéCOUVERTE DE L’INSTRUMENT') %}
                 <button class="access-btn" onclick="accessLesson('lesson1')">Accéder à la leçon</button>
             {% else %}
                 <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
@@ -25,7 +25,7 @@
             <p>Apprenez les différents accords et gammes.</p>
             <button class="validate-btn" onclick="validateLesson('Leçon 2')">Valider cette leçon</button>
 
-            {% if is_granted('ROLE_LEçON 2 : ACCORDS ET GAMMES') %}
+            {% if is_granted('ROLE_LEçON N°2 : LES ACCORDS ET LES GAMMES') %}
                 <button class="access-btn" onclick="accessLesson('lesson2')">Accéder à la leçon</button>
             {% else %}
                 <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>

@@ -38,12 +38,24 @@ class CheckoutController extends AbstractController
                         if ($lesson) {
                             $user->addRole('ROLE_' . strtoupper($lesson->getTitle()));
                             $purchasedItems[] = $lesson; // Ajoute la leçon achetée à la liste
+
+                            // Ajouter également le rôle de la formation associée
+                            $course = $lesson->getCourse();
+                            if ($course) {
+                                $user->addRole('ROLE_' . strtoupper($course->getTitle()));
+                            }
                         }
                     } elseif ($type === 'courses') {
                         $course = $this->entityManager->getRepository(Course::class)->find($id);
                         if ($course) {
                             $user->addRole('ROLE_' . strtoupper($course->getTitle()));
                             $purchasedItems[] = $course; // Ajoute le cours acheté à la liste
+
+                            // Ajouter également les rôles pour toutes les leçons de la formation
+                            $lessons = $course->getLessons();
+                            foreach ($lessons as $lesson) {
+                                $user->addRole('ROLE_' . strtoupper($lesson->getTitle()));
+                            }
                         }
                     }
                 }

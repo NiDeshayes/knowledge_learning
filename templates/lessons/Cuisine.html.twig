@@ -13,7 +13,12 @@
                 <h4>Leçon n°1 : Les modes de cuisson</h4>
                 <p>Cette leçon vous apprendra les différentes méthodes de cuisson pour sublimer vos plats.</p>
                 <button class="validate-btn" onclick="validateLesson('Leçon 9', 'cuisine')">Valider cette leçon</button>
-                <button class="access-btn" onclick="accessLesson('lesson9')">Accéder à la leçon</button>
+
+                {% if is_granted('ROLE_LEçON N°1 : LES MODES DE CUISSON') %}
+                    <button class="access-btn" onclick="accessLesson('lesson9')">Accéder à la leçon</button>
+                {% else %}
+                    <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+                {% endif %}
                 <div id="square-formation1" class="valid-square" style="display:none;"></div>
             </div>
 
@@ -21,12 +26,16 @@
                 <h4>Leçon n°2 : Les saveurs</h4>
                 <p>Apprenez à équilibrer les saveurs dans vos plats pour un meilleur goût.</p>
                 <button class="validate-btn" onclick="validateLesson('Leçon 10', 'cuisine')">Valider cette leçon</button>
-                <button class="access-btn" onclick="accessLesson('lesson10')">Accéder à la leçon</button>
+
+                {% if is_granted('ROLE_LEçON N°2 : LES SAVEURS') %}
+                    <button class="access-btn" onclick="accessLesson('lesson10')">Accéder à la leçon</button>
+                {% else %}
+                    <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+                {% endif %}
                 <div id="square-formation2" class="valid-square" style="display:none;"></div>
             </div>
         </div>
 
-       
         <div id="confirmation" style="display:none; margin-top: 20px;">
             <h4 id="confirmation-message"></h4>
         </div>
@@ -39,9 +48,8 @@
     <script>
         let lesson1CuisineValidée = false;
         let lesson2CuisineValidée = false;
-       
 
-        function validateLesson(lessonName, cursus) 
+        function validateLesson(lessonName, cursus) {
             const confirmationDiv = document.getElementById('confirmation');
             const message = document.getElementById('confirmation-message');
             message.textContent = `Vous avez validé la ${lessonName}.`;
@@ -56,10 +64,10 @@
                     lesson2CuisineValidée = true;
                     document.getElementById('square-formation2').style.display = 'inline-block';
                 }
-           
+            }
 
             // Vérifiez si toutes les leçons sont validées
-            if ((lesson1CuisineValidée && lesson2CuisineValidée) || (lesson1DressageValidée && lesson2DressageValidée)) {
+            if (lesson1CuisineValidée && lesson2CuisineValidée) {
                 document.getElementById('final-message').style.display = 'block';
                 document.getElementById('cursus-title').style.color = 'green';
             }
@@ -128,6 +136,11 @@
             background-color: green; 
             margin-left: 10px; 
             display: inline-block; 
+        }
+
+        .access-denied {
+            color: red;
+            font-weight: bold;
         }
 
         footer {

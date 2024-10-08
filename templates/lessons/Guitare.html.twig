@@ -11,7 +11,12 @@
             <h3>Leçon 1 : Introduction aux Accords de Base</h3>
             <p>Cette leçon vous apprendra les accords de base nécessaires pour jouer vos premières chansons.</p>
             <button class="validate-btn" onclick="validateLesson('Leçon 1')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson1')">Accéder à la leçon</button>
+
+            {% if is_granted('ROLE_LEçON 1 : ACCORDS DE BASE') %}
+                <button class="access-btn" onclick="accessLesson('lesson1')">Accéder à la leçon</button>
+            {% else %}
+                <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+            {% endif %}
             <div id="square-formation1" class="valid-square" style="display:none;"></div>
         </div>
 
@@ -19,17 +24,26 @@
             <h3>Leçon 2 : Accords et gammes</h3>
             <p>Apprenez les différents accords et gammes.</p>
             <button class="validate-btn" onclick="validateLesson('Leçon 2')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson2')">Accéder à la leçon</button>
+
+            {% if is_granted('ROLE_LEçON 2 : ACCORDS ET GAMMES') %}
+                <button class="access-btn" onclick="accessLesson('lesson2')">Accéder à la leçon</button>
+            {% else %}
+                <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+            {% endif %}
             <div id="square-formation2" class="valid-square" style="display:none;"></div>
         </div>
 
-        <div id="confirmation" style="display:none; margin-top: 20px;">
+        <div id="confirmation" class="confirmation" style="display:none; margin-top: 20px;">
             <h4 id="confirmation-message"></h4>
         </div>
 
-        <div id="final-message" style="display:none; margin-top: 20px; color: green;">
+        <div id="final-message" class="final-message" style="display:none; margin-top: 20px;">
             <h3>Félicitations ! Vous avez validé le cursus Guitare.</h3>
         </div>
+
+        <footer>
+            <p>&copy; 2024 Cursus de Guitare</p>
+        </footer>
     </div>
 
     <script>
@@ -68,66 +82,77 @@
     </script>
 
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            color: #333;
+        }
+
         .container {
             margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            font-family: Arial, sans-serif;
         }
 
         h1 {
-            color: #333;
+            color: #4CAF50;
             text-align: center;
         }
 
         h2 {
-            color: #555;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: normal;
         }
 
         .formation {
-            background-color: #f9f9f9;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 5px;
             padding: 15px;
             margin-bottom: 20px;
-            transition: box-shadow 0.3s;
+            background-color: #fafafa;
         }
 
-        .formation:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .validate-btn, .access-btn {
+        .validate-btn,
+        .access-btn {
             background-color: #4CAF50;
             color: white;
             border: none;
             padding: 10px 15px;
-            margin-right: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px 0;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
-        .validate-btn:hover, .access-btn:hover {
+        .validate-btn:hover,
+        .access-btn:hover {
             background-color: #45a049;
         }
 
-        .valid-square {
-            width: 20px; 
-            height: 20px; 
-            background-color: green; 
-            margin-left: 10px; 
-            display: inline-block; 
+        .access-denied {
+            color: red;
+            font-weight: bold;
         }
 
-        footer {
+        .valid-square {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .confirmation,
+        .final-message {
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #777;
+            font-size: 18px;
         }
     </style>
-
-    <footer>
-        <p>&copy; 2024 Cursus de Guitare</p>
-    </footer>
 {% endblock %}

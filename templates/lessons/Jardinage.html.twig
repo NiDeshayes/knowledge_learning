@@ -11,7 +11,12 @@
             <h3>Leçon 1 : Les Outils du Jardinier</h3>
             <p>Cette leçon vous apprendra à utiliser les différents outils nécessaires pour jardiner efficacement.</p>
             <button class="validate-btn" onclick="validateLesson('Leçon 7')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson7')">Accéder à la leçon</button>
+
+            {% if is_granted('ROLE_LEçON N°1 : LES OUTILS DU JARDINIER') %}
+                <button class="access-btn" onclick="accessLesson('lesson7')">Accéder à la leçon</button>
+            {% else %}
+                <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+            {% endif %}
             <div id="square-formation1" class="valid-square" style="display:none;"></div>
         </div>
 
@@ -19,7 +24,12 @@
             <h3>Leçon 2 : Jardiner avec la Lune</h3>
             <p>Découvrez comment jardiner en harmonie avec les phases de la lune pour de meilleurs résultats.</p>
             <button class="validate-btn" onclick="validateLesson('Leçon 8')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson8')">Accéder à la leçon</button>
+
+            {% if is_granted('ROLE_▪ LEçON N°2 : JARDINER AVEC LA LUNE') %}
+                <button class="access-btn" onclick="accessLesson('lesson8')">Accéder à la leçon</button>
+            {% else %}
+                <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+            {% endif %}
             <div id="square-formation2" class="valid-square" style="display:none;"></div>
         </div>
 
@@ -117,6 +127,11 @@
             background-color: green; 
             margin-left: 10px; 
             display: inline-block; 
+        }
+
+        .access-denied {
+            color: red;
+            font-weight: bold;
         }
 
         footer {

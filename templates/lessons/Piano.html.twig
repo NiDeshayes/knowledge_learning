@@ -10,17 +10,25 @@
         <div class="formation">
             <h3>Leçon 1 : Découverte de l’instrument</h3>
             <p>Cette leçon vous familiarisera avec les différentes parties du piano et les techniques de base pour commencer à jouer.</p>
-            <button class="validate-btn" onclick="validateLesson('Leçon 3')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson3')">Accéder à la leçon</button>
-            <div id="square-formation1" class="valid-square" style="display:none;"></div>
+            {% if is_granted('ROLE_LEçON N°1 : DéCOUVERTE DE L’INSTRUMENT') %}
+                <button class="validate-btn" onclick="validateLesson('Leçon 3')">Valider cette leçon</button>
+                <button class="access-btn" onclick="accessLesson('lesson3')">Accéder à la leçon</button>
+                <div id="square-formation1" class="valid-square" style="display:none;"></div>
+            {% else %}
+                <p>Veuillez vous connecter pour accéder à cette leçon.</p>
+            {% endif %}
         </div>
 
         <div class="formation">
             <h3>Leçon 2 : Les accords et les gammes</h3>
             <p>Apprenez les différents accords et gammes pour enrichir votre jeu au piano.</p>
-            <button class="validate-btn" onclick="validateLesson('Leçon 4')">Valider cette leçon</button>
-            <button class="access-btn" onclick="accessLesson('lesson4')">Accéder à la leçon</button>
-            <div id="square-formation2" class="valid-square" style="display:none;"></div>
+            {% if is_granted('ROLE_▪ LEçON N°2 : LES ACCORDS ET LES GAMMES') %}
+                <button class="validate-btn" onclick="validateLesson('Leçon 4')">Valider cette leçon</button>
+                <button class="access-btn" onclick="accessLesson('lesson4')">Accéder à la leçon</button>
+                <div id="square-formation2" class="valid-square" style="display:none;"></div>
+            {% else %}
+                <p>Veuillez vous connecter pour accéder à cette leçon.</p>
+            {% endif %}
         </div>
 
         <div id="confirmation" style="display:none; margin-top: 20px;">
@@ -43,10 +51,10 @@
             confirmationDiv.style.display = 'block';
 
             // Afficher le carré vert correspondant
-            if (lessonName === 'Leçon 1') {
+            if (lessonName === 'Leçon 3') {
                 lesson1Validée = true;
                 document.getElementById('square-formation1').style.display = 'inline-block';
-            } else if (lessonName === 'Leçon 2') {
+            } else if (lessonName === 'Leçon 4') {
                 lesson2Validée = true;
                 document.getElementById('square-formation2').style.display = 'inline-block';
             }

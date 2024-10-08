@@ -1,30 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cursus Cuisine - Sélectionnez votre Leçon{% endblock %}
+{% block title %}Cursus Dressage - Sélectionnez votre Leçon{% endblock %}
+
+
 
 {% block body %}
     <div class="container">
         <h1 id="cursus-title">Bienvenue dans le Cursus Dressage</h1>
         <h2>Sélectionnez une leçon :</h2>
 
+        <div class="formation">
+            <h3>Leçon n°1 : Mettre en œuvre le style dans l’assiette</h3>
+            <p>Découvrez comment présenter vos plats avec élégance.</p>
+            <button class="validate-btn" onclick="validateLesson('Leçon 11', 'dressage')">Valider cette leçon</button>
 
-        <div class="cursus">
-            <h3>Cursus d’initiation à l’art du dressage culinaire</h3>
-            <div class="formation">
-                <h4>Leçon n°1 : Mettre en œuvre le style dans l’assiette</h4>
-                <p>Découvrez comment présenter vos plats avec élégance.</p>
-                <button class="validate-btn" onclick="validateLesson('Leçon 11', 'dressage')">Valider cette leçon</button>
+            {% if is_granted('ROLE_LEçON N°1 : METTRE EN œUVRE LE STYLE DANS L’ASSIETTE') %}
                 <button class="access-btn" onclick="accessLesson('lesson11')">Accéder à la leçon</button>
-                <div id="square-formation3" class="valid-square" style="display:none;"></div>
-            </div>
+            {% else %}
+                <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+            {% endif %}
+            <div id="square-formation3" class="valid-square" style="display:none;"></div>
+        </div>
 
-            <div class="formation">
-                <h4>Leçon n°2 : Harmoniser un repas à quatre plats</h4>
-                <p>Apprenez à créer un menu harmonieux pour un repas complet.</p>
-                <button class="validate-btn" onclick="validateLesson('Leçon 12', 'dressage')">Valider cette leçon</button>
+        <div class="formation">
+            <h3>Leçon n°2 : Harmoniser un repas à quatre plats</h3>
+            <p>Apprenez à créer un menu harmonieux pour un repas complet.</p>
+            <button class="validate-btn" onclick="validateLesson('Leçon 12', 'dressage')">Valider cette leçon</button>
+
+            {% if is_granted('ROLE_▪ LEçON N°2 : HARMONISER UN REPAS à QUATRE PLATS') %}
                 <button class="access-btn" onclick="accessLesson('lesson12')">Accéder à la leçon</button>
-                <div id="square-formation4" class="valid-square" style="display:none;"></div>
-            </div>
+            {% else %}
+                <p class="access-denied">Vous n'avez pas accès à cette leçon.</p>
+            {% endif %}
+            <div id="square-formation4" class="valid-square" style="display:none;"></div>
         </div>
 
         <div id="confirmation" style="display:none; margin-top: 20px;">
@@ -32,12 +40,11 @@
         </div>
 
         <div id="final-message" style="display:none; margin-top: 20px; color: green;">
-            <h3>Félicitations ! Vous avez validé le cursus Cuisine.</h3>
+            <h3>Félicitations ! Vous avez validé le cursus Dressage.</h3>
         </div>
     </div>
 
     <script>
-    
         let lesson1DressageValidée = false;
         let lesson2DressageValidée = false;
 
@@ -48,7 +55,7 @@
             confirmationDiv.style.display = 'block';
 
             // Afficher le carré vert correspondant
-            (cursus === 'dressage') {
+            if (cursus === 'dressage') {
                 if (lessonName === 'Leçon 11') {
                     lesson1DressageValidée = true;
                     document.getElementById('square-formation3').style.display = 'inline-block';
@@ -59,87 +66,99 @@
             }
 
             // Vérifiez si toutes les leçons sont validées
-            if ((lesson1CuisineValidée && lesson2CuisineValidée) || (lesson1DressageValidée && lesson2DressageValidée)) {
+            if (lesson1DressageValidée && lesson2DressageValidée) {
                 document.getElementById('final-message').style.display = 'block';
                 document.getElementById('cursus-title').style.color = 'green';
             }
         }
 
         function accessLesson(lesson) {
-            if 
-              (lesson === 'lesson11') {
-                window.location.href = '/lessons/lesson11'; // Remplacez par l'URL directe de la leçon 3
+            if (lesson === 'lesson11') {
+                window.location.href = '/lessons/lesson11'; // Remplacez par l'URL directe de la leçon 11
             } else if (lesson === 'lesson12') {
-                window.location.href = '/lessons/lesson12'; // Remplacez par l'URL directe de la leçon 4
+                window.location.href = '/lessons/lesson12'; // Remplacez par l'URL directe de la leçon 12
             }
         }
     </script>
 
+    <footer>
+        <p>&copy; 2024 Cursus de Dressage</p>
+    </footer>
+
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            color: #333;
+        }
+
         .container {
             margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #333;
+            color: #4CAF50;
             text-align: center;
         }
 
         h2 {
-            color: #555;
-        }
-
-        .cursus {
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: normal;
         }
 
         .formation {
-            background-color: #f9f9f9;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 5px;
             padding: 15px;
             margin-bottom: 20px;
-            transition: box-shadow 0.3s;
+            background-color: #fafafa;
         }
 
-        .formation:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .validate-btn, .access-btn {
+        .validate-btn,
+        .access-btn {
             background-color: #4CAF50;
             color: white;
             border: none;
             padding: 10px 15px;
-            margin-right: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px 0;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
-        .validate-btn:hover, .access-btn:hover {
+        .validate-btn:hover,
+        .access-btn:hover {
             background-color: #45a049;
         }
 
+        .access-denied {
+            color: red;
+            font-weight: bold;
+        }
+
         .valid-square {
-            width: 20px; 
-            height: 20px; 
-            background-color: green; 
-            margin-left: 10px; 
-            display: inline-block; 
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            border-radius: 50%;
+            margin-left: 10px;
         }
 
-        footer {
+        .confirmation,
+
+        .final-message {
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #777;
+            font-size: 18px;
         }
-    </style>
 
-    <footer>
-        <p>&copy; 2024 Cursus de Cuisine</p>
-    </footer>
+      
+    </style>
 {% endblock %}

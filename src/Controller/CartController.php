@@ -45,9 +45,9 @@ class CartController extends AbstractController
                             'type' => 'lesson',
                             'item' => $lesson,
                             'quantity' => $item['quantity'] ?? 1,
-                            'price' => $lessonPrice, // Utilisation du prix divisé
+                            'price' => $lessonPrice,
                         ];
-                        $total += $lessonPrice * ($item['quantity'] ?? 1); // Total ajusté
+                        $total += $lessonPrice * ($item['quantity'] ?? 1);
                     }
                 } elseif ($type === 'courses') {
                     $course = $courseRepository->find($id);
@@ -56,7 +56,7 @@ class CartController extends AbstractController
                             'type' => 'course',
                             'item' => $course,
                             'quantity' => $item['quantity'] ?? 1,
-                            'price' => $course->getPrice(), // Le prix des cours reste inchangé
+                            'price' => $course->getPrice(),
                         ];
                         $total += $course->getPrice() * ($item['quantity'] ?? 1);
                     }
@@ -158,11 +158,21 @@ class CartController extends AbstractController
                         $lesson = $this->entityManager->getRepository(Lesson::class)->find($id);
                         if ($lesson) {
                             $user->addRole('ROLE_' . strtoupper($lesson->getTitle()));
+
+                            $course = $lesson->getCourse();
+                            if ($course) {
+                                $user->addRole('ROLE_' . strtoupper($course->getTitle()));
+                            }
                         }
                     } elseif ($type === 'courses') {
                         $course = $this->entityManager->getRepository(Course::class)->find($id);
                         if ($course) {
                             $user->addRole('ROLE_' . strtoupper($course->getTitle()));
+
+                            $lessons = $course->getLessons();
+                            foreach ($lessons as $lesson) {
+                                $user->addRole('ROLE_' . strtoupper($lesson->getTitle()));
+                            }
                         }
                     }
                 }
@@ -170,6 +180,7 @@ class CartController extends AbstractController
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
+
             $this->addFlash('success', 'Rôles ajoutés avec succès !');
         } else {
             $this->addFlash('error', 'Vous devez être connecté pour finaliser l\'achat.');

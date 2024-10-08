@@ -49,7 +49,7 @@ class LessonsController extends AbstractController
             ]);
         }
 
-        if ($this->isGranted('ROLE_CURSUS D’INITIATION à L’ART DU DRESSAGE CULINAIRE')) {
+        if ($this->isGranted('ROLE_O CURSUS D’INITIATION à L’ART DU DRESSAGE CULINAIRE')) {
             return $this->render('lessons/Dressage.html.twig', [
                 'lessons' => $lessons,
             ]);

@@ -104,7 +104,7 @@ class CheckoutController extends AbstractController
             $this->addFlash('error', 'You must be logged in to add a role.');
         }
 
-        return $this->redirectToRoute('checkout_success'); // Redirige vers la page de succès
+        return $this->redirectToRoute('app_home_index'); // Redirige vers la page de succès
     }
 
     #[Route('/checkout/cancel', name: 'checkout_cancel')]
